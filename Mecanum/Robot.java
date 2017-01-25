@@ -122,42 +122,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 			{
 				
 				//returns center x and center y and expected motion 
-				double x1;
-				double y1;
-			
-				synchronized (imgLock) {
-					x1 = this.centerX1;
-					y1 = this.centerY1;
-				}
-				
-				
-				if(y1>90)//too far away
-				{
-					
-					SmartDashboard.putString("move", "forwards");
-				}
-				
-				if(y1<90)//too close
-				{
-					
-					SmartDashboard.putString("move", "backwards");
-				}
-				if(x1>160)//too far right
-				{
-					
-					SmartDashboard.putString("move", "left");
-				}
-				
-				if(x1<160)//too far left
-				{
-					
-					SmartDashboard.putString("move", "right");
-				}
-				SmartDashboard.putNumber("CenterX1 of tape",x1);
-				SmartDashboard.putNumber("CenterY1 of tape",y1);
-				
-				strafeLeft();
-				
+				centerOnTest(160,90);
 				
 			}
 				
@@ -169,78 +134,10 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 			@Override
 			public void teleopPeriodic() 
 			{
-				//change ideal x and ideal y, dependent on if searching for gear or boiler
-				double x1;
-				double y1;
-				double ymove=0;
-				double xmove=0;
-				
-				double idealX=160;
-				double idealY=90;
-				
-				
-				synchronized (imgLock) {
-					x1 = this.centerX1;
-					y1 = this.centerY1;
-					
-				}
-				
-				
-				if(!centeredX && !centeredY)
-				{
-				    if(y1>idealY && y1<idealY+5)
-					{
-						stopRobot();
-						centeredY=true;
-					}
-					
-					else if(y1>idealY+5)
-					{
-						ymove=.2;
-						SmartDashboard.putString("move", "forwards");
-					}
-					
-					else if(y1<idealY)
-					{
-						//centeredY=true;
-						ymove=-.2;
-						SmartDashboard.putString("move", "backwards");
-					}
-					
-				    rb.mecanumDrive_Cartesian(0, 0, ymove,0);
-				}
-				else if(!centeredX)
-				{
-				
-				//right side reversed
-				 if(x1<idealX && x1>(idealX-5))
-				{
-					 stopRobot();
-					 centeredX=true;
-				}			
-				 else if(x1<idealX-5)
-					{
-						strafeLeft();
-					}
-			
-					else if(x1>idealX)
-					{
-						strafeRight();
-					}
-				}
+				while( !returnCentered(160,90))
+				{centerOn(160, 90);}
 					
 					
-					
-				SmartDashboard.putNumber("CenterX1 of tape",x1);
-				SmartDashboard.putNumber("CenterY1 of tape",y1);
-				
-				
-				//SmartDashboard.putNumber("CenterX2 of tape",centerX2);
-				//SmartDashboard.putNumber("CenterY2 of tape",centerY2);
-			
-				
-				//rb.mecanumDrive_Cartesian(joy1.getX(), joy1.getY(), joy1.getTwist(),0);
-				
 			}
 		
 			/**
@@ -268,6 +165,137 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 */
 			}
 			
+			public boolean returnCentured()
+			{
+			return true;
+			}
+			public void centerOnTest(double iX, double iY)
+			
+			{
+				
+				double x1;
+				double y1;
+				double idealX=iX;
+				double idealY=iY;
+				
+				synchronized (imgLock) 
+				{
+					x1 = this.centerX1;
+					y1 = this.centerY1;
+					
+				}
+				
+				
+		
+				if(!centeredX && !centeredY)
+				{
+				    if(y1>idealY && y1<idealY+5)
+					{
+				    	SmartDashboard.putString("move", "stop");
+				    	centeredY=true;
+					}
+					
+					else if(y1>idealY+5)
+					{
+						SmartDashboard.putString("move", "forwards");
+					}
+					
+					else if(y1<idealY)
+					{
+						SmartDashboard.putString("move", "backwards");
+					}
+				}
+				else if(!centeredX)
+				{
+				
+				//right side reversed
+					 if(x1<idealX && x1>(idealX-5))
+					{
+						 SmartDashboard.putString("move", "stop");
+					}			
+				    else if(x1<idealX-5)
+					{
+				    	SmartDashboard.putString("move", "left");
+					}
+			
+					else if(x1>idealX)
+					{
+						SmartDashboard.putString("move", "right");
+					}
+				}
+				
+				SmartDashboard.putNumber("CenterX1 of tape",x1);
+				SmartDashboard.putNumber("CenterY1 of tape",y1);		
+				
+			}
+			
+			
+			
+			public void centerOn(double iX, double iY)
+			{
+				
+				double x1;
+				double y1;
+				double ymove=0;
+				double idealX=iX;
+				double idealY=iY;
+				
+				synchronized (imgLock) 
+				{
+					x1 = this.centerX1;
+					y1 = this.centerY1;
+					
+				}
+				
+				
+		
+				if(!centeredX && !centeredY)
+				{
+				    if(y1>idealY && y1<idealY+5)
+					{
+						stopRobot();
+						centeredY=true;
+					}
+					
+					else if(y1>idealY+5)
+					{
+						ymove=.2;
+						SmartDashboard.putString("move", "forwards");
+					}
+					
+					else if(y1<idealY)
+					{
+						//centeredY=true;
+						ymove=-.2;
+						SmartDashboard.putString("move", "backwards");
+					}
+					
+				    rb.mecanumDrive_Cartesian(0, 0, ymove,0);
+				}
+				else if(!centeredX)
+				{
+				
+				//right side reversed
+					 if(x1<idealX && x1>(idealX-5))
+					{
+						 stopRobot();
+						 centeredX=true;
+					}			
+				    else if(x1<idealX-5)
+					{
+						strafeLeft();
+					}
+			
+					else if(x1>idealX)
+					{
+						strafeRight();
+					}
+				}
+				
+				SmartDashboard.putNumber("CenterX1 of tape",x1);
+				SmartDashboard.putNumber("CenterY1 of tape",y1);
+				
+			}
 			
 			public void strafeLeft()
 			{
