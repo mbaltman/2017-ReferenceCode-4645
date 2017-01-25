@@ -46,7 +46,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 			private VisionThread visionThread;
 			private double centerX1 = 1;
 			private double centerY1 = 1;
-			
+			private boolean centeredX=false;
+			private boolean centeredY=false;
 			private final Object imgLock = new Object();
 			
 			/**
@@ -166,14 +167,14 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 			 * This function is called periodically during operator control
 			 */
 			@Override
-			public void teleopPeriodic() {
+			public void teleopPeriodic() 
+			{
 				//change ideal x and ideal y, dependent on if searching for gear or boiler
 				double x1;
 				double y1;
 				double ymove=0;
 				double xmove=0;
-				boolean centeredX=false;
-				boolean centeredY=true;
+				
 				double idealX=160;
 				double idealY=90;
 				
@@ -185,11 +186,12 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 				}
 				
 				
-				/*
+				if(!centeredX && !centeredY)
+				{
 				    if(y1>idealY && y1<idealY+5)
 					{
 						stopRobot();
-						SmartDashboard.putString("move", "stop");
+						centeredY=true;
 					}
 					
 					else if(y1>idealY+5)
@@ -206,12 +208,15 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 					}
 					
 				    rb.mecanumDrive_Cartesian(0, 0, ymove,0);
+				}
+				else if(!centeredX)
+				{
 				
-				*/
 				//right side reversed
 				 if(x1<idealX && x1>(idealX-5))
 				{
 					 stopRobot();
+					 centeredX=true;
 				}			
 				 else if(x1<idealX-5)
 					{
@@ -222,7 +227,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 					{
 						strafeRight();
 					}
-					
+				}
 					
 					
 					
@@ -262,6 +267,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 		        	rb.mecanumDrive_Cartesian( tempXMag/XSpeed, tempYMag/YSpeed, tempTwist/turnSpeed, 0.00);
 */
 			}
+			
+			
 			public void strafeLeft()
 			{
 				frontLeft.set( -.2 );
