@@ -1,12 +1,18 @@
 
 package org.usfirst.frc.team4645.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4645.robot.commands.*;
 import org.usfirst.frc.team4645.robot.subsystems.*;
 
@@ -31,6 +37,17 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	Command moveBalls;
 
+	
+	private static final int IMG_WIDTH = 320;
+	private static final int IMG_HEIGHT = 240;
+	
+	
+	private VisionThread visionThread;
+	private double centerX1 = 1;
+	private double centerY1 = 1;
+	private final Object imgLock = new Object();
+	
+	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -43,6 +60,26 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto",null);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		
+		 UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		    //draws a rectangle around the biggest contour and gets x and y coordinate of center 
+		    visionThread = new VisionThread(camera, new Pipeline(), pipeline -> {
+		        if (!pipeline.filterContoursOutput().isEmpty()) {
+		            Rect rBig = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+		            //Rect rSmall = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
+		            
+		            
+		            synchronized (imgLock) {
+		               centerX1 = rBig.x + rBig.width/2;
+		               centerY1 = rBig.y + rBig.height/2;
+		              
+		            }
+		        }
+		    });
+		    visionThread.start();
+		    
 	}
 
 	/**
