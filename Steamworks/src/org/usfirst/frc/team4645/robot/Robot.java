@@ -30,22 +30,18 @@ public class Robot extends IterativeRobot {
 	public static final Reservoir bucketSubsystem = new Reservoir();
 	public static final Climbing climberSubsystem = new Climbing();
 	public static final Gears gearSubsystem = new Gears();
-	
+	public static final Vision visionSubsystem = new Vision();
+	public static final DriveTrain drivetrainSubsystem = new DriveTrain();
 	
 	public static OI oi;
 
 	Command autonomousCommand;
 	Command moveBalls;
-
-	
-	private static final int IMG_WIDTH = 320;
-	private static final int IMG_HEIGHT = 240;
-	
-	
-	private VisionThread visionThread;
-	private double centerX1 = 1;
-	private double centerY1 = 1;
-	private final Object imgLock = new Object();
+	Command testValuesVision;
+	Command pushGearCommand;
+	Command centerInX;
+	Command climb;
+	Command dropGearCommand;
 	
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -62,23 +58,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		
-		 UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-		    //draws a rectangle around the biggest contour and gets x and y coordinate of center 
-		    visionThread = new VisionThread(camera, new Pipeline(), pipeline -> {
-		        if (!pipeline.filterContoursOutput().isEmpty()) {
-		            Rect rBig = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-		            //Rect rSmall = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
-		            
-		            
-		            synchronized (imgLock) {
-		               centerX1 = rBig.x + rBig.width/2;
-		               centerY1 = rBig.y + rBig.height/2;
-		              
-		            }
-		        }
-		    });
-		    visionThread.start();
+		
 		    
 	}
 

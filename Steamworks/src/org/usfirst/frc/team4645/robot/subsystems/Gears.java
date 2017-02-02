@@ -14,6 +14,9 @@ public class Gears extends Subsystem
     // here. Call these from Commands.
 	Servo gear1= RobotMap.gearServo1;
 	Servo gear2 = RobotMap.gearServo2;
+	
+	
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
