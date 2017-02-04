@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +24,10 @@ public class Robot extends IterativeRobot {
 	Timer timer;
 	CANTalon motorOne, motorTwo, motorThree;
 	Servo servy;
+	BuiltInAccelerometer accel;
+	double positionY;
+	double passes;
+	double sumAccY;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -36,6 +41,10 @@ public class Robot extends IterativeRobot {
 		motorTwo = new CANTalon(1);
 		motorThree = new CANTalon(3);
 		servy = new Servo(3);
+		accel = new BuiltInAccelerometer();
+		positionY = 0;
+		passes = 0;
+		sumAccY = 0;
 	}
 
 	/**
@@ -164,7 +173,22 @@ public class Robot extends IterativeRobot {
 			//throttle /= 2;
 			servy.set(throttle);
 			
+			passes++;
 			
+			double accY = accel.getY();
+			
+			sumAccY += accY;
+			double aveAccY = sumAccY / passes;
+			SmartDashboard.putNumber("aveAccY", aveAccY);
+			
+			
+			//accY -= 0.012;
+			SmartDashboard.putNumber("accY", accY);
+			
+			if(Math.abs(accY) > 0.01) {
+				positionY += (0.0020387) * accY;
+				SmartDashboard.putNumber("positionY", positionY);
+			}
 		
 	}
 
