@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Servo;
 
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
@@ -29,9 +30,11 @@ public class Robot extends IterativeRobot {
   
 	CANTalon shooter = new CANTalon(0);	
 	CANTalon pgMotor = new CANTalon(1);
+	CANTalon intakeMotor = new CANTalon(2);
 	Joystick _joy = new Joystick(0);	
 	StringBuilder _sb = new StringBuilder();
 	int _loops = 0;
+	Servo servy = new Servo(0);
 	
 	public void robotInit() {
         /* first choose the sensor */
@@ -69,13 +72,27 @@ public class Robot extends IterativeRobot {
         	//pgMotor.set(0);
         }
         
-        if(shooter.getEncVelocity() < -475) {
+        if(_joy.getRawButton(11)) {
         	pgMotor.set(-1);
         }
         else {
         	pgMotor.set(0);
         }
         
+        if(_joy.getRawButton(3)) {
+        	intakeMotor.set(-1);
+        }
+        else {
+        	intakeMotor.set(0);
+        }
+        
+        double throttle = _joy.getThrottle();
+        throttle += 1;
+        throttle = throttle / 2;
+        SmartDashboard.putNumber("asdf", throttle);
+		servy.set(throttle);
+		
+		
         SmartDashboard.putNumber("velocity", shooter.getEncVelocity());
     	SmartDashboard.putNumber("motoroutput", shooter.getOutputVoltage());
     	SmartDashboard.putNumber("current", shooter.getOutputCurrent());
