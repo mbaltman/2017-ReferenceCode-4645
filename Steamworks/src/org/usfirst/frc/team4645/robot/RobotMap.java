@@ -19,6 +19,7 @@ public class RobotMap {
 	
 	public static Servo gearServo1 = new Servo(1);
 	public static Servo gearServo2 = new Servo(2);
+
 	
 	
 }

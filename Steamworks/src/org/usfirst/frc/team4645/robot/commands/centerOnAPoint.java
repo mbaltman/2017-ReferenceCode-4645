@@ -7,14 +7,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class centerOnAPoint extends CommandGroup {
 
-    public centerOnAPoint(double x,double y,double angle) {
-       
-    	//addSequential(new gyroCenter(angle) );
-    	addSequential(new centerInX(x));
-    	addSequential(new centerInY(y));
-
-    	
-    	// Add Commands here:
+    public centerOnAPoint() {
+        // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
@@ -30,5 +24,21 @@ public class centerOnAPoint extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	
+    	double pointCamera=0;//degree camera should be at.
+    	
+        double pointRobot=0;//angle actual robot faces
+        
+        double directlyLeft=pointRobot +90;
+       
+        double directlyRight=pointRobot-90;
+        
+        
+    	addSequential(new pointCamera);
+    	
+    	addSequential(new pointFaceofRobot());
+    	addSequential(new centerInX(160));
+    	addSequential(move(degree, Robot.Vision));
     }
 }

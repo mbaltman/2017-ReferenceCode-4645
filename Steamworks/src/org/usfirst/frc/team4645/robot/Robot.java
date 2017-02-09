@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
 	Command testValuesVision;
 	Command pushGearCommand;
 	Command centerInX;
+	Command centerInY;
 	Command climb;
 	Command dropGearCommand;
 	

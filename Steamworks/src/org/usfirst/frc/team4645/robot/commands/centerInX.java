@@ -16,14 +16,14 @@ public class centerInX extends Command {
 	public centerInX(double x) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.visionSubsystem);
-    	requires(Robot.drivetrainSubsystem);
+    	//requires(Robot.visionSubsystem);
+    	//requires(Robot.drivetrainSubsystem);
     	idealX =x;   	
     }
 	public centerInX(double x,double time) {
         // for a timer 
-    	requires(Robot.visionSubsystem);
-    	requires(Robot.drivetrainSubsystem);
+    	//requires(Robot.visionSubsystem);
+    	//requires(Robot.drivetrainSubsystem);
     	idealX =x;
     	
     	

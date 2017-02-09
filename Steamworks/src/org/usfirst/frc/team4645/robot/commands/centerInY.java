@@ -16,18 +16,11 @@ public class centerInY extends Command {
 	public centerInY(double y) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.visionSubsystem);
-    	requires(Robot.drivetrainSubsystem);
+    	//requires(Robot.visionSubsystem);
+    	//requires(Robot.drivetrainSubsystem);
     	idealY =y;   	
     }
-	public centerInY(double y,double time) {
-        // for a timer 
-    	requires(Robot.visionSubsystem);
-    	requires(Robot.drivetrainSubsystem);
-    	idealY =y;
-    	
-    	
-    }
+
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -36,7 +29,6 @@ public class centerInY extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
     	double y1 = Robot.visionSubsystem.returnCoordinate()[1];
     	
     	
@@ -50,12 +42,12 @@ public class centerInY extends Command {
 			}			
 		    else if(y1>idealY+5)
 			{
-		    	SmartDashboard.putString("move", "left");
+		    	SmartDashboard.putString("move", "forwards");
 			}
 	
 			else if(y1<idealY)
 			{
-				SmartDashboard.putString("move", "right");
+				SmartDashboard.putString("move", "backwards");
 			}
 		}
     	
