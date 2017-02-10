@@ -17,8 +17,6 @@ public class testValuesVision extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.visionSubsystem);
-
-    	
     }
 
     // Called just before this Command runs the first time
@@ -28,16 +26,18 @@ public class testValuesVision extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
        
-    	double[] coordinateHere=Robot.visionSubsystem.returnCoordinate();
+    	double[] coordinateHere=Robot.visionSubsystem.returnBoilerInformation();
     	
-        SmartDashboard.putNumber("y coordinate",coordinateHere[1]);
-        SmartDashboard.putNumber("x coordinate",coordinateHere[0]);
-        SmartDashboard.putNumber("height", coordinateHere[3]);
-        SmartDashboard.putNumber("width", coordinateHere[2]);
+        SmartDashboard.putNumber("y coordinate",coordinateHere[3]);
+        SmartDashboard.putNumber("x coordinate",coordinateHere[2]);
+        SmartDashboard.putNumber("height", coordinateHere[4]);
+        SmartDashboard.putNumber("width", coordinateHere[5]);
        
         
         
-        SmartDashboard.putNumber("distanceAway",distanceAway);  
+        SmartDashboard.putNumber("distance away",coordinateHere[1]);  
+
+        SmartDashboard.putNumber("distance off center",coordinateHere[0]);  
         
     }
 

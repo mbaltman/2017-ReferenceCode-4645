@@ -20,6 +20,11 @@ public class RobotMap {
 	public static Servo gearServo1 = new Servo(1);
 	public static Servo gearServo2 = new Servo(2);
 
+	public static CANTalon shooter1 = new CANTalon(0);	
+	public static CANTalon pgMotor = new CANTalon(1);
+	
+	
+	
 	
 	
 }

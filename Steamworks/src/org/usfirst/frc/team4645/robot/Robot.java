@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 	public static final Gears gearSubsystem = new Gears();
 	public static final Vision visionSubsystem = new Vision();
 	public static final DriveTrain drivetrainSubsystem = new DriveTrain();
-	
+	public static final Shooter shooterSubsystem = new Shooter();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -43,6 +43,9 @@ public class Robot extends IterativeRobot {
 	Command centerInY;
 	Command climb;
 	Command dropGearCommand;
+	
+	public static final double shooterSpeed=0;
+	public static final String allianceColor="";
 	
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();

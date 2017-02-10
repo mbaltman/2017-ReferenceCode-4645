@@ -64,30 +64,37 @@ public class Vision extends Subsystem {
 		    }
 		    );
 		    visionThread.start();
-	
+		    setDefaultCommand(new testValuesVision());
 	} 
 	
 	    
     
    
-    public double[] returnCoordinate()
+    public double[] returnBoilerInformation()
 	{
     	
-    	double[] coordinate={0,0,0,0,0};
+    	double[] coordinate={0,0,0,0,0,0};
     	
     	synchronized (imgLock) 
     	 {
-    		coordinate[0]= centerX1;
-    		coordinate[1]= centerY1;
+    		coordinate[2]= centerX1;
+    		coordinate[3]= centerY1;
     		 
-    		coordinate[2]= widthRec;
+    		coordinate[4]= widthRec;
     		
-    		 coordinate[3]= heightRec;
+    		 coordinate[5]= heightRec;
     		 
     	 }
     	
-    	double distanceAway =(11.8*510)/widthRec;
-    	coordinate[4]=distanceAway;
+    	double shortestDistance =(11.8*510)/widthRec;//calculate exact distance from camera to center of tape
+    	shortestDistance= shortestDistance * .0254; //convert to meters
+		
+    	double sine = (coordinate[2] -160) /160;;
+		double distanceY= Math.sqrt((shortestDistance* shortestDistance)-(3.7084* 3.7084));
+		double distanceX = distanceY * sine;
+		
+		coordinate[0]=distanceX;
+		coordinate[1]=distanceY;
 		
     	return coordinate;
 	

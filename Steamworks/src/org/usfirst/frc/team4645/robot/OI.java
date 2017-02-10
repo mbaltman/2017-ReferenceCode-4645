@@ -12,7 +12,7 @@ import org.usfirst.frc.team4645.robot.commands.*;
  */
 public class OI {
 	
-	Joystick leftJoy = new Joystick(1);
+	public static Joystick leftJoy = new Joystick(1);
 	Button button1 = new JoystickButton(leftJoy, 1);
 	Button button2 = new JoystickButton(leftJoy, 3);
 	Button button3 = new JoystickButton(leftJoy, 4);
@@ -22,20 +22,20 @@ public class OI {
 	Button button8 = new JoystickButton(leftJoy, 8);
 	
 	public OI(){
-	
-		button1.whileHeld(new intakeRun());
+	    
+		button1.whileHeld(new IntakeCommand());
 		
-		button2.whenPressed(new moveBalls());
+		button2.whenPressed(new ReservoirCommand());
 		
 		
-		button3.whileHeld(new climb());
+		button3.whileHeld(new ClimbCommand());
 		
-		button4.whileHeld(new pushGearCommand());
+		button4.whileHeld(new PushGearCommand());
 		
-		button5.whileHeld(new dropGearCommand());
+		button5.whileHeld(new DropGearCommand());
 	    
 		button7.whileHeld(new testValuesVision());
-		button8.whileHeld(new centerInY(90));
+	
 	}
 	// button.whenPressed(new ExampleCommand());
 
