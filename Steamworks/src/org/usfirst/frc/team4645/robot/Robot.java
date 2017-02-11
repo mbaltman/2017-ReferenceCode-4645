@@ -31,7 +31,6 @@ public class Robot extends IterativeRobot {
 	public static final Climbing climberSubsystem = new Climbing();
 	public static final Gears gearSubsystem = new Gears();
 	public static final Vision visionSubsystem = new Vision();
-	public static final DriveTrain drivetrainSubsystem = new DriveTrain();
 	public static final Shooter shooterSubsystem = new Shooter();
 	public static OI oi;
     Command autonomousCommand;
