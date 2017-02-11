@@ -19,12 +19,12 @@ SmartDashboard interface that allows the drivers to input
   
   
   1. Their Alliance
-  angles for the gear and shooting
+  :angles for the gear and shooting
   2. The shooters configuration
-  distance from the boiler
+ :distance from the boiler,
   target speed for shooting
   3. Which autonomous they want to run
-   which autonomous runs
+  : which autonomous runs
 
 
 
