@@ -16,12 +16,14 @@ This is a Command Based Program which controls all of the Subsystems on the robo
 Control of the camera position with a servo
 The exact angles and distances for autonomous
 SmartDashboard interface that allows the drivers to input 
-1. Their Alliance
+  
+  
+  1. Their Alliance
   angles for the gear and shooting
-2. The shooters configuration
+  2. The shooters configuration
   distance from the boiler
   target speed for shooting
-3. Which autonomous they want to run
+  3. Which autonomous they want to run
    which autonomous runs
 
 
