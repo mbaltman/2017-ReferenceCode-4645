@@ -10,8 +10,7 @@ This project is a basic iterative program which uses a grip generated pipeline t
 This project is a command based program.  It has a single subsystem which makes a single motor spin,  can be used as reference when getting started with Command based programming
 
 ## Steamworks
-This is a Command Based Program which controls most of the subsystems on the robot,  does not yet include the drivetrain,shooter, or vision code. 
-
+This is a Command Based Program which controls all of the Subsystems on the robot.  It also contains 3 autonomous codes for the three starting positions, the angles that the robot turns are determined by which alliance color you are.  
 
 
 
