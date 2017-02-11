@@ -34,15 +34,16 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain drivetrainSubsystem = new DriveTrain();
 	public static final Shooter shooterSubsystem = new Shooter();
 	public static OI oi;
-
-	Command autonomousCommand;
-	Command moveBalls;
+    Command autonomousCommand;
+	Command ClimbCommand;
+	Command DropGearCommand;
+	Command IntakeCommand;
+	Command PushGearCommand;
+	Command ReservoirCommand;
+	Command ReservoirLoop;
+	Command ShootCommand;
 	Command testValuesVision;
-	Command pushGearCommand;
-	Command centerInX;
-	Command centerInY;
-	Command climb;
-	Command dropGearCommand;
+	
 	
 	public static final double shooterSpeed=0;
 	public static final String allianceColor="";

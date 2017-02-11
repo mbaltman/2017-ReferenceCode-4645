@@ -27,18 +27,11 @@ public class ReservoirLoop extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	setTimeout(time);
-    	while(!isTimedOut())
-    	{   
-    		setTimeout(1);
-    		addSequential(new ReservoirCommand());
+    	  
     		
-    		while(!isTimedOut())
-    		{
-    			
-    		}
-       
-    	}
+    		addSequential(new ReservoirCommand(10));
+    		
+    	
     	
     	
     	
