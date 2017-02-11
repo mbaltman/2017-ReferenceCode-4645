@@ -23,7 +23,27 @@ public class RobotMap {
 	public static CANTalon shooter1 = new CANTalon(0);	
 	public static CANTalon pgMotor = new CANTalon(1);
 	
+	public static final int steerFR = 0;
+	public static final int steerFL = 1;
+	public static final int steerBR = 2;
+	public static final int steerBL = 3;
 	
+	public static final int driveFR = 4;
+	public static final int driveFL = 5;
+	public static final int driveBR = 6;
+	public static final int driveBL = 7;
+	
+	public static final double FRONTRIGHT_ERROR = 163;
+	public static final double FRONTLEFT_ERROR = 121;
+	public static final double BACKRIGHT_ERROR = -5;
+	public static final double BACKLEFT_ERROR = 208;
+	
+	public static final double FRONTRIGHT_RADANGLE = 32;
+	public static final double FRONTLEFT_RADANGLE = 148;
+	public static final double BACKRIGHT_RADANGLE = 328;
+	public static final double BACKLEFT_RADANGLE = 212;
+	
+	public static final double RADIUS = 0.425;
 	
 	
 	

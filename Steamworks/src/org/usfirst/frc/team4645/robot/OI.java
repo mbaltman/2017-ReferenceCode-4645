@@ -18,15 +18,32 @@ public class OI {
 	Button button4 = new JoystickButton(leftJoy, 4);
 	Button button5 = new JoystickButton(leftJoy, 5);
 	Button button6 = new JoystickButton(leftJoy, 6);
-	Button button7 = new JoystickButton(leftJoy, 7);
 	Button button8 = new JoystickButton(leftJoy, 8);
 	Button button9 = new JoystickButton(leftJoy, 9);
+	
+	public static double tempXMag;
+	public static double tempYMag;
+	public static double tempZMag;
+	
+	public static Button resetGyro = new JoystickButton(leftJoy, 7);
 	
 	public OI(){
 	    
 		button1.whileHeld(new ShootCommand());//will shootballs until button is released
 		button3.whenPressed(new ReservoirCommand(10));
 		button4.whileHeld(new ReservoirCommand());
+		
+		tempXMag = -leftJoy.getX();
+		tempYMag = leftJoy.getY();
+		tempZMag = leftJoy.getZ();
+		
+		if (tempZMag < 0.2 && tempZMag > -0.2) {
+			tempZMag = 0;
+		}
+		if (tempZMag < 0) {tempZMag += 0.2;}
+		else if (tempZMag > 0) {tempZMag -= 0.2;}
+		
+		resetGyro.whenPressed(new ResetGyro());
 
 	
 	}

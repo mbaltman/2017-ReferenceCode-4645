@@ -16,6 +16,8 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4645.robot.commands.*;
 import org.usfirst.frc.team4645.robot.subsystems.*;
 
+import com.ctre.CANTalon.FeedbackDevice;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -25,7 +27,7 @@ import org.usfirst.frc.team4645.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	
+	public static final SwerveDrive swerveDrive = new SwerveDrive();
 	public static final Intake intakeSubsystem = new Intake();
 	public static final Reservoir reservoirSubsystem = new Reservoir();
 	public static final Climbing climberSubsystem = new Climbing();
@@ -61,6 +63,48 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
+		SwerveDrive.steeringMotorFrontRight.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+        SwerveDrive.steeringMotorFrontRight.configNominalOutputVoltage(+0.0f, -0.0f);
+        SwerveDrive.steeringMotorFrontRight.configPeakOutputVoltage(+12.0f, -12.0f);
+        SwerveDrive.steeringMotorFrontRight.setP(25);
+        SwerveDrive.steeringMotorFrontRight.setD(250);
+        SwerveDrive.steeringMotorFrontRight.setAllowableClosedLoopErr(2);
+        
+        SwerveDrive.steeringMotorFrontLeft.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+        SwerveDrive.steeringMotorFrontLeft.configNominalOutputVoltage(+0.0f, -0.0f);
+        SwerveDrive.steeringMotorFrontLeft.configPeakOutputVoltage(+12.0f, -12.0f);
+        SwerveDrive.steeringMotorFrontLeft.setP(25);
+        SwerveDrive.steeringMotorFrontLeft.setD(250);
+        SwerveDrive.steeringMotorFrontLeft.setAllowableClosedLoopErr(2);
+        
+        SwerveDrive.steeringMotorBackRight.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+        SwerveDrive.steeringMotorBackRight.configNominalOutputVoltage(+0.0f, -0.0f);
+        SwerveDrive.steeringMotorBackRight.configPeakOutputVoltage(+12.0f, -12.0f);
+        SwerveDrive.steeringMotorBackRight.setP(25);
+        SwerveDrive.steeringMotorBackRight.setD(250);
+        SwerveDrive.steeringMotorBackRight.setAllowableClosedLoopErr(2);
+        
+        SwerveDrive.steeringMotorBackLeft.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+        SwerveDrive.steeringMotorBackLeft.configNominalOutputVoltage(+0.0f, -0.0f);
+        SwerveDrive.steeringMotorBackLeft.configPeakOutputVoltage(+12.0f, -12.0f);
+        SwerveDrive.steeringMotorBackLeft.setP(25);
+        SwerveDrive.steeringMotorBackLeft.setD(250);
+        SwerveDrive.steeringMotorBackLeft.setAllowableClosedLoopErr(2);
+        
+        SwerveDrive.drivingMotorFrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        SwerveDrive.drivingMotorFrontLeft.configNominalOutputVoltage(+0.0f, -0.0f);
+        SwerveDrive.drivingMotorFrontLeft.configPeakOutputVoltage(+12.0f, 0f);
+        SwerveDrive.drivingMotorFrontLeft.setP(0);
+        SwerveDrive.drivingMotorFrontLeft.setD(0);
+        
+        SwerveDrive.drivingMotorBackRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        SwerveDrive.drivingMotorBackRight.configNominalOutputVoltage(+0.0f, -0.0f);
+        SwerveDrive.drivingMotorBackRight.configPeakOutputVoltage(+12.0f, 0f);
+        SwerveDrive.drivingMotorBackRight.setP(0);
+        SwerveDrive.drivingMotorBackRight.setD(0);
+        
+        
+        SwerveDrive.gyro.calibrate();
 		
 		
 		    
