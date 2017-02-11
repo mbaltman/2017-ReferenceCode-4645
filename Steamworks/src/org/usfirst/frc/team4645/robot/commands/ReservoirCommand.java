@@ -14,8 +14,8 @@ public class ReservoirCommand extends Command {
     public ReservoirCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.bucketSubsystem);
-    	setTimeout(1);
+    	requires(Robot.reservoirSubsystem);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -26,20 +26,17 @@ public class ReservoirCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.bucketSubsystem.spinIn();
-    	SmartDashboard.putString("execute","execute");
+    	Robot.reservoirSubsystem.spinIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return Robot.reservoirSubsystem.servo1.get()>.9;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	
-    	Robot.bucketSubsystem.spinOut();
-    	
+    	Robot.reservoirSubsystem.spinOut();
     
     }
 
@@ -47,6 +44,5 @@ public class ReservoirCommand extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
    
-    	
     }
 }

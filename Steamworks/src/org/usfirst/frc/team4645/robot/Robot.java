@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 
 	
 	public static final Intake intakeSubsystem = new Intake();
-	public static final Reservoir bucketSubsystem = new Reservoir();
+	public static final Reservoir reservoirSubsystem = new Reservoir();
 	public static final Climbing climberSubsystem = new Climbing();
 	public static final Gears gearSubsystem = new Gears();
 	public static final Vision visionSubsystem = new Vision();
