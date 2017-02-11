@@ -4,6 +4,7 @@ import org.usfirst.frc.team4645.robot.RobotMap;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,8 +14,8 @@ public class Climbing extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	CANTalon climbing1=RobotMap.hangerMotor1;
-	CANTalon climbing2=RobotMap.hangerMotor2;
+	public static Talon climbingLeft = new Talon(RobotMap.hangerMotorL);
+	public static Talon climbingRight = new Talon(RobotMap.hangerMotorR);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -23,13 +24,13 @@ public class Climbing extends Subsystem {
     
     public void stopClimb()
     {
-    climbing1.set(0);
-    climbing2.set(0);
+    climbingLeft.set(0);
+    climbingRight.set(0);
     }
     public void startClimb()
     {
-    	climbing1.set(1);
-        climbing2.set(-1);
+    	climbingLeft.set(1);
+        climbingRight.set(-1);
     
     }
 }

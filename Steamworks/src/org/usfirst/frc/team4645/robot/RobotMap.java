@@ -10,18 +10,28 @@ import edu.wpi.first.wpilibj.Servo;
  * floating around.
  */
 public class RobotMap {
-	public static Servo reservoirServo = new Servo(0);
 	
-	public static CANTalon intakeMotor= new CANTalon(2);
 	
-	public static CANTalon hangerMotor1 = new CANTalon(1);
-	public static CANTalon hangerMotor2 = new CANTalon(3);
 	
-	public static Servo gearServo1 = new Servo(1);
-	public static Servo gearServo2 = new Servo(2);
+	
+	
+	
 
-	public static CANTalon shooter1 = new CANTalon(0);	
-	public static CANTalon pgMotor = new CANTalon(1);
+	
+	
+	
+	public static final int reservoirServo = 0;
+	
+	public static final int gearServoDrop =1;
+	public static final int gearServoPush =2;
+	
+	public static final int intakeMotor = 3;
+	
+	public static final int hangerMotorL = 4;
+	public static final int hangerMotorR = 5;
+	public static final int pgMotor = 6;
+	
+	
 	
 	public static final int steerFR = 0;
 	public static final int steerFL = 1;
@@ -32,6 +42,10 @@ public class RobotMap {
 	public static final int driveFL = 5;
 	public static final int driveBR = 6;
 	public static final int driveBL = 7;
+	
+	public static final int shooter = 8;
+	
+	
 	
 	public static final double FRONTRIGHT_ERROR = 163;
 	public static final double FRONTLEFT_ERROR = 121;

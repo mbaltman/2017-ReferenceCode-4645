@@ -40,7 +40,10 @@ public class Robot extends IterativeRobot {
     Command PlaceGear;
 	//Autonomous Commands
     Command autonomousCommand;
-    
+    Command AutonomousMiddle;
+    Command AutonomousNextToBoiler;
+    Command AutonomousNextToLoadingStation;
+    SendableChooser<Command> autoChooser = new SendableChooser<>();
     
     //basic Commands
     Command ClimbCommand;
@@ -61,7 +64,7 @@ public class Robot extends IterativeRobot {
 	public static final String allianceColor="";
 	
 	
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -70,9 +73,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addDefault("Default Auto",null);
+		autoChooser.addDefault("Default Auto",null);
+		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
+		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
+		autoChooser.addObject("Autonomous Next to Loading Station", new AutonomousNextToLoadingStation());
+		
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData("Auto mode", autoChooser);
 		
 		SwerveDrive.steeringMotorFrontRight.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
         SwerveDrive.steeringMotorFrontRight.configNominalOutputVoltage(+0.0f, -0.0f);
@@ -116,7 +123,7 @@ public class Robot extends IterativeRobot {
         
         
         SwerveDrive.gyro.calibrate();
-		
+      
 		
 		    
 	}
@@ -149,7 +156,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = (Command) autoChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

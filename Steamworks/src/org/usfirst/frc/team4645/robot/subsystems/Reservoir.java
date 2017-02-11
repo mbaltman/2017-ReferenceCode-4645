@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Servo;
  */
 public class Reservoir extends Subsystem {
 
-    public Servo servo1 = RobotMap.reservoirServo;
+	public static final Servo servo1 =  new Servo(RobotMap.reservoirServo);
 
     public void initDefaultCommand() {
     	

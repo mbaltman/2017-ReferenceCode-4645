@@ -5,6 +5,7 @@ import org.usfirst.frc.team4645.robot.Robot;
 import org.usfirst.frc.team4645.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -17,9 +18,10 @@ public class Shooter extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public CANTalon shooter = RobotMap.shooter1;
-	public CANTalon pgMotor = RobotMap.pgMotor;
-	StringBuilder _sb = new StringBuilder();
+	public static final CANTalon shooter = new CANTalon(RobotMap.shooter);
+	public static final Talon pgMotor = new Talon(RobotMap.pgMotor);
+	
+	
 	int _loops = 0;
 	Joystick _joy = OI.leftJoy;
 	double targetSpeed=Robot.shooterSpeed;

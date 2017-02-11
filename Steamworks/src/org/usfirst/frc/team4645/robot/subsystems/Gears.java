@@ -12,8 +12,8 @@ public class Gears extends Subsystem
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	Servo gear1= RobotMap.gearServo1;
-	Servo gear2 = RobotMap.gearServo2;
+	public static final Servo gearDrop =  new Servo(RobotMap.gearServoDrop);
+	public static final Servo gearPush =  new Servo(RobotMap.gearServoPush);
 	
 	
 	
@@ -23,20 +23,20 @@ public class Gears extends Subsystem
     }
     public void dropGear()
     {
-    	gear1.set(0);
+    	gearDrop.set(0);
     }
     public void pushGear()
     {
-    	gear2.set(1);
+    	gearPush.set(1);
     	
     }
     public void resetDropGear()
     {
-    	gear1.set(0);
+    	gearDrop.set(0);
     }
     public void resetPushGear()
     {
-    	gear2.set(0);
+    	gearPush.set(0);
     }
 }
 

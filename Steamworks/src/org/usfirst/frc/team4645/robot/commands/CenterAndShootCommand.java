@@ -41,7 +41,7 @@ public class CenterAndShootCommand extends CommandGroup {
         
     	addSequential(new MoveToY(idealYDistance-distanceInformation[1]));//moves in Y
         addSequential(new ShootCommand());//shoots until interrupted unless command group is called with a timer
-        
+        addParallel(new ReservoirCommand(),10);//shoot and reservoir move at once
         
     	// this command centers on the boiler 
     }
