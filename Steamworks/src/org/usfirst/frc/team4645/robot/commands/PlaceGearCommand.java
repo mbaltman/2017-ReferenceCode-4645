@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4645.robot.commands;
 
+import org.usfirst.frc.team4645.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -24,14 +26,28 @@ public class PlaceGearCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	double degreeToGear=0;//This depends on which gear spot is being target
+       	double idealYDistance=0;
+    	double idealXDistance=0;
     	
-    	//addSequential(new faceThisDirection)
-    	//addSequential(Center on this point in X);
-    	//addSequential(Center on this point in Y);
+    	
+    	addSequential(new MakeParallel(degreeToGear));
+    	
+    	 double[] distanceInformation=(Robot.visionSubsystem.returnBoilerInformation());//updates vision values
+     	
+         addSequential(new MoveToX(idealXDistance-distanceInformation[0]));//moves in X
+        
+         distanceInformation=(Robot.visionSubsystem.returnBoilerInformation());//updates vision values
+         
+     	addSequential(new MoveToY(idealYDistance-distanceInformation[1]));//moves in Y
+     	
+     //At this point the Robot is Some known distance from the gear and centered on it 
     	addSequential(new DropGearCommand());
-    	//addSequential(new DriveForwards(Small Distance));
+    	
+    	addSequential(new MoveToY(1));//how ever many meters to actually place gear
+    	
     	addSequential(new PushGearCommand());
-    	//addSequential( new Drive Forwards(negativeDistance));
+    	addSequential( new MoveToY(-1));
     	
     	//this series of steps will center on the gear, drive forwards, place the gear and then drive backwards
     	//if the robot will need to wait some amount of time before driving backwards then a delay will

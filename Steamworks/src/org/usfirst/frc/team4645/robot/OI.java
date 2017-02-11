@@ -30,7 +30,7 @@ public class OI {
 	public OI(){
 	    
 		button1.whileHeld(new ShootCommand());//will shootballs until button is released
-		button3.whenPressed(new ReservoirCommand(10));
+		
 		button4.whileHeld(new ReservoirCommand());
 		
 		tempXMag = -leftJoy.getX();

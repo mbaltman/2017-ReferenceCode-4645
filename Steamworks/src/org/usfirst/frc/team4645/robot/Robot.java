@@ -35,13 +35,24 @@ public class Robot extends IterativeRobot {
 	public static final Vision visionSubsystem = new Vision();
 	public static final Shooter shooterSubsystem = new Shooter();
 	public static OI oi;
+	//Command Groups
+	Command CenterAndShootCommand;
+    Command PlaceGear;
+	//Autonomous Commands
     Command autonomousCommand;
-	Command ClimbCommand;
+    
+    
+    //basic Commands
+    Command ClimbCommand;
+    Command DefaultSwerve;
 	Command DropGearCommand;
 	Command IntakeCommand;
+	Command MakeParallel;
+	Command MoveToX;
+	Command MoveToY;
 	Command PushGearCommand;
 	Command ReservoirCommand;
-	Command ReservoirLoop;
+	Command ResetGyro;
 	Command ShootCommand;
 	Command testValuesVision;
 	

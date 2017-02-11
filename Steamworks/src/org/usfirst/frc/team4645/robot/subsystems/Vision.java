@@ -99,7 +99,28 @@ public class Vision extends Subsystem {
     	return coordinate;
 	
 	}
-
+  public double returnXDistance()
+  {
+	  double[] coordinate={0,0,0,0,0,0};
+  	
+  	synchronized (imgLock) 
+  	 {
+  		coordinate[2]= centerX1;
+  		coordinate[3]= centerY1;
+  	 }
+  	
+  	double shortestDistance =(11.8*510)/widthRec;//calculate exact distance from camera to center of tape
+  	shortestDistance= shortestDistance * .0254; //convert to meters
+		
+  	double sine = (coordinate[2] -160) /160;;
+		double distanceY= Math.sqrt((shortestDistance* shortestDistance)-(3.7084* 3.7084));
+		double distanceX = distanceY * sine;
+		
+		coordinate[0]=distanceX;
+		coordinate[1]=distanceY;
+		
+  	return coordinate[0];
+  }
  
 }
 
