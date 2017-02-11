@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ReservoirCommand extends Command {
 
 	
-	boolean usingTimer=false;
+	
 	
     public ReservoirCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -22,13 +22,7 @@ public class ReservoirCommand extends Command {
     	
     }
     
-    public ReservoirCommand(double time) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.reservoirSubsystem);
-    	setTimeout(time);
-    	
-    }
+   
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -45,12 +39,12 @@ public class ReservoirCommand extends Command {
     	{
     	Robot.reservoirSubsystem.spinOut();
     	}
-       usingTimer=isTimedOut();
+       
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return usingTimer;
+        return false;
     }
 
     // Called once after isFinished returns true

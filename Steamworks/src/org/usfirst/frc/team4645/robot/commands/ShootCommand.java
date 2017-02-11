@@ -9,21 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ShootCommand extends Command {
 
-	boolean usingTimer=false;
+	
 	
     public ShootCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooterSubsystem);
     }
-    
-    public ShootCommand(double time) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.shooterSubsystem);
-    	setTimeout(time);//allows autonomous command to give the shooting command a set amount of time during which to shoot
-    	
-    }
+   
 
     // Called just before this Command runs the first time
     protected void initialize() 
@@ -41,12 +34,12 @@ public class ShootCommand extends Command {
     	{
     		Robot.shooterSubsystem.pgMotorStop();
     	}
-    	usingTimer=isTimedOut();//only turns true if timer is created and then runs out
+    	//only turns true if timer is created and then runs out
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return usingTimer;//only returns true if timer is created and then runs out
+        return false;//only returns true if timer is created and then runs out
        
     }
 
