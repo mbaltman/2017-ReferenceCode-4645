@@ -26,18 +26,31 @@ public class testValuesVision extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
        
-    	double[] coordinateHere=Robot.visionSubsystem.returnBoilerInformation();
+    	double[] coordinateBoiler=Robot.visionSubsystem.returnBoilerInformation();
     	
-        SmartDashboard.putNumber("y coordinate",coordinateHere[3]);
-        SmartDashboard.putNumber("x coordinate",coordinateHere[2]);
-        SmartDashboard.putNumber("height", coordinateHere[4]);
-        SmartDashboard.putNumber("width", coordinateHere[5]);
+        SmartDashboard.putNumber("Boiler: y coordinate",coordinateBoiler[3]);
+        SmartDashboard.putNumber("Boiler: x coordinate",coordinateBoiler[2]);
+        SmartDashboard.putNumber("Boiler: height", coordinateBoiler[4]);
+        SmartDashboard.putNumber("Boiler: width", coordinateBoiler[5]);
        
         
         
-        SmartDashboard.putNumber("distance away",coordinateHere[1]);  
-
-        SmartDashboard.putNumber("distance off center",coordinateHere[0]);  
+        SmartDashboard.putNumber("Boiler: distance away",coordinateBoiler[1]);  
+        SmartDashboard.putNumber("Boiler: distance off center",coordinateBoiler[0]);  
+        
+        
+        
+        double[] coordinateGear=Robot.visionSubsystem.returnGearInformation();
+    	
+        SmartDashboard.putNumber("Gear: y coordinate",coordinateGear[3]);
+        SmartDashboard.putNumber("Gear: x coordinate",coordinateGear[2]);
+        SmartDashboard.putNumber("Gear: height", coordinateGear[4]);
+        SmartDashboard.putNumber("Gear: width", coordinateGear[5]);
+       
+        
+        
+        SmartDashboard.putNumber("Gear: distance away",coordinateGear[1]);  
+        SmartDashboard.putNumber("Gear: Boiler: distance off center",coordinateGear[0]);  
         
     }
 

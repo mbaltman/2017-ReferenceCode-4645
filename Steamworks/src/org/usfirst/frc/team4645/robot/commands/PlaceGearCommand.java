@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PlaceGearCommand extends CommandGroup {
 
-    public PlaceGearCommand(int whichGear) {
+    public PlaceGearCommand(int whichGear,int auto ) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -26,18 +26,22 @@ public class PlaceGearCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	double degreeToGear=0;//This depends on which gear spot is being target
+    	
+    	
+    	
+    	double degreeToGear=60 *whichGear* auto;//This depends on which gear spot is being target
+    	    	
        	double idealYDistance=0;
     	double idealXDistance=0;
     	
     	
     	addSequential(new MakeParallel(degreeToGear));
     	
-    	 double[] distanceInformation=(Robot.visionSubsystem.returnBoilerInformation());//updates vision values
+    	 double[] distanceInformation=(Robot.visionSubsystem.returnGearInformation());//updates vision values
      	
          addSequential(new MoveToX(idealXDistance-distanceInformation[0]));//moves in X
         
-         distanceInformation=(Robot.visionSubsystem.returnBoilerInformation());//updates vision values
+         distanceInformation=(Robot.visionSubsystem.returnGearInformation());//updates vision values
          
      	addSequential(new MoveToY(idealYDistance-distanceInformation[1]));//moves in Y
      	

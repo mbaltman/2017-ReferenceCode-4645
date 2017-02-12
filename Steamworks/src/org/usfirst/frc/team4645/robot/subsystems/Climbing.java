@@ -14,8 +14,8 @@ public class Climbing extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public static Talon climbingLeft = new Talon(RobotMap.hangerMotorL);
-	public static Talon climbingRight = new Talon(RobotMap.hangerMotorR);
+	public static CANTalon climbingLeft = new CANTalon(RobotMap.hangerMotorL);
+	public static CANTalon climbingRight = new CANTalon(RobotMap.hangerMotorR);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4645.robot.commands;
 
+import org.usfirst.frc.team4645.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -27,7 +29,7 @@ public class AutonomousNextToBoiler extends CommandGroup {
     	
     	
     	addSequential(new MoveToY(2.5));// drives up to boiler
-    	addSequential(new PlaceGearCommand(1));//This will center on the gear system and place it
+    	addSequential(new PlaceGearCommand(-1, Robot.allianceConstant));//This will center on the gear system and place it
     	//1 represents the gear next to the boiler
     	
     	//additional positioning?

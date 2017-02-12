@@ -31,19 +31,26 @@ public class Robot extends IterativeRobot {
 	public static final Intake intakeSubsystem = new Intake();
 	public static final Reservoir reservoirSubsystem = new Reservoir();
 	public static final Climbing climberSubsystem = new Climbing();
+	
+	
 	public static final Gears gearSubsystem = new Gears();
 	public static final Vision visionSubsystem = new Vision();
 	public static final Shooter shooterSubsystem = new Shooter();
 	public static OI oi;
 	//Command Groups
 	Command CenterAndShootCommand;
-    Command PlaceGear;
+    Command PlaceGearCommand;
 	//Autonomous Commands
     Command autonomousCommand;
     Command AutonomousMiddle;
     Command AutonomousNextToBoiler;
     Command AutonomousNextToLoadingStation;
-    SendableChooser<Command> autoChooser = new SendableChooser<>();
+   
+//    SendableChooser<Command> autoChooser = new SendableChooser<>();
+//    
+//    SendableChooser<String> colorChooser = new SendableChooser<>();
+//    
+//    SendableChooser<String> shooterChooser = new SendableChooser<>();
     
     //basic Commands
     Command ClimbCommand;
@@ -59,9 +66,13 @@ public class Robot extends IterativeRobot {
 	Command ShootCommand;
 	Command testValuesVision;
 	
+    public static int allianceConstant=1;
+	public String allianceColor= null;
 	
-	public static final double shooterSpeed=0;
-	public static final String allianceColor="";
+	public static int shooterSpeed=0;
+	public String shooterPosition=  null;
+	
+	
 	
 	
 	
@@ -73,13 +84,24 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		autoChooser.addDefault("Default Auto",null);
-		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
-		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
-		autoChooser.addObject("Autonomous Next to Loading Station", new AutonomousNextToLoadingStation());
-		
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", autoChooser);
+//		autoChooser.addDefault("Default Auto",null);
+//		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
+//		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
+//		autoChooser.addObject("Autonomous Next to Loading Station", new AutonomousNextToLoadingStation());
+//		
+//		
+//		colorChooser.addDefault("Practice Alliance:RED", "Red");
+//		colorChooser.addObject("Blue Alliance", "Blue");
+//		colorChooser.addObject("Red Alliance", "Red");
+//		
+//		shooterChooser.addDefault("8ft away", "eight");
+//		shooterChooser.addObject("8ft Away","eight");
+//		shooterChooser.addObject("15 ft away", "fifteen");
+//		
+//		// chooser.addObject("My Auto", new MyAutoCommand());
+//		SmartDashboard.putData("Auto mode", autoChooser);
+//		SmartDashboard.putData("Choose Alliance", colorChooser);
+//		SmartDashboard.putData("Choose the Shooter Distance", shooterChooser);
 		
 		SwerveDrive.steeringMotorFrontRight.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
         SwerveDrive.steeringMotorFrontRight.configNominalOutputVoltage(+0.0f, -0.0f);
@@ -135,11 +157,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		 
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -156,8 +179,28 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) autoChooser.getSelected();
-
+//		allianceColor= colorChooser.getSelected();
+//		if(allianceColor=="Red")
+//		{
+//			allianceConstant=1;
+//		}
+//		if(allianceColor=="Blue")
+//		{
+//			allianceConstant=-1;
+//		}
+//		shooterPosition = shooterChooser.getSelected();
+//		if(shooterPosition == "eight")
+//		{
+//			shooterSpeed = 475;
+//		}
+//		if( shooterPosition == "fifteen")
+//		{
+//			shooterSpeed = 500;
+//		}
+//		
+//		
+//       autonomousCommand = (Command) autoChooser.getSelected();
+       
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -205,4 +248,7 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+	
+	
+	
 }
