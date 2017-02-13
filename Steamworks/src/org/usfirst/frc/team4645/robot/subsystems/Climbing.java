@@ -24,8 +24,8 @@ public class Climbing extends Subsystem {
     
     public void stopClimb()
     {
-    climbingLeft.set(0);
-    climbingRight.set(0);
+   	cimbingLeft.set(0);
+    	climbingRight.set(0);
     }
     public void startClimb()
     {
