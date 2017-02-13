@@ -32,7 +32,7 @@ public class Gears extends Subsystem
     }
     public void resetDropGear()
     {
-    	gearDrop.set(0);
+    	gearDrop.set(1);
     }
     public void resetPushGear()
     {
