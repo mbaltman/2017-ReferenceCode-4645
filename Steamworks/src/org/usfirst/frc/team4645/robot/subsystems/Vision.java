@@ -107,7 +107,7 @@ public class Vision extends Subsystem {
     
    
     public double[] returnBoilerInformation()
-	{
+    {
     	
     	double[] coordinate={0,0,0,0,0,0};
     	
@@ -134,9 +134,9 @@ public class Vision extends Subsystem {
 		
     	return coordinate;
 	
-	}
+    }
     public double[] returnGearInformation()
-   	{
+    {
        	
        	double[] coordinate={0,0,0,0,0,0};
        	
