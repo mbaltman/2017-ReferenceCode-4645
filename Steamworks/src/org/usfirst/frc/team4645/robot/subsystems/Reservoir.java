@@ -21,12 +21,12 @@ public class Reservoir extends Subsystem {
     public void spinIn()
     {
     		
-    		servo1.set(1);
+	servo1.set(1);
     }
     
     public void spinOut()
     {
-    		servo1.set(.5);
+	servo1.set(.5);
     }
   
    
