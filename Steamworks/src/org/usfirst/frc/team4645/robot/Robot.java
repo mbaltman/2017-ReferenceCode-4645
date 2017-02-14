@@ -25,7 +25,8 @@ import com.ctre.CANTalon.FeedbackDevice;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot 
+{
 
 	public static final SwerveDrive swerveDrive = new SwerveDrive();
 	public static final Intake intakeSubsystem = new Intake();
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public static final Gears gearSubsystem = new Gears();
 	public static final Vision visionSubsystem = new Vision();
 	public static final Shooter shooterSubsystem = new Shooter();
+	
 	public static OI oi;
 	//Command Groups
 	Command CenterAndShootCommand;
@@ -46,11 +48,11 @@ public class Robot extends IterativeRobot {
     Command AutonomousNextToBoiler;
     Command AutonomousNextToLoadingStation;
    
-//    SendableChooser<Command> autoChooser = new SendableChooser<>();
-//    
-//    SendableChooser<String> colorChooser = new SendableChooser<>();
-//    
-//    SendableChooser<String> shooterChooser = new SendableChooser<>();
+    SendableChooser<Command> autoChooser = new SendableChooser<>();
+    
+    SendableChooser<String> colorChooser = new SendableChooser<>();
+    
+    SendableChooser<String> shooterChooser = new SendableChooser<>();
     
     //basic Commands
     Command ClimbCommand;
@@ -71,37 +73,33 @@ public class Robot extends IterativeRobot {
 	
 	public static int shooterSpeed=0;
 	public String shooterPosition=  null;
-	
-	
-	
-	
-	
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
-	public void robotInit() {
+	public void robotInit() 
+	{
 		oi = new OI();
-//		autoChooser.addDefault("Default Auto",null);
-//		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
-//		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
-//		autoChooser.addObject("Autonomous Next to Loading Station", new AutonomousNextToLoadingStation());
-//		
-//		
-//		colorChooser.addDefault("Practice Alliance:RED", "Red");
-//		colorChooser.addObject("Blue Alliance", "Blue");
-//		colorChooser.addObject("Red Alliance", "Red");
-//		
-//		shooterChooser.addDefault("8ft away", "eight");
-//		shooterChooser.addObject("8ft Away","eight");
-//		shooterChooser.addObject("15 ft away", "fifteen");
-//		
-//		// chooser.addObject("My Auto", new MyAutoCommand());
-//		SmartDashboard.putData("Auto mode", autoChooser);
-//		SmartDashboard.putData("Choose Alliance", colorChooser);
-//		SmartDashboard.putData("Choose the Shooter Distance", shooterChooser);
+		autoChooser.addDefault("Default Auto",null);
+		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
+		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
+		autoChooser.addObject("Autonomous Next to Loading Station", new AutonomousNextToLoadingStation());
+		
+		
+		colorChooser.addDefault("Practice Alliance:RED", "Red");
+		colorChooser.addObject("Blue Alliance", "Blue");
+		colorChooser.addObject("Red Alliance", "Red");
+		
+		shooterChooser.addDefault("8ft away", "eight");
+		shooterChooser.addObject("8ft Away","eight");
+		shooterChooser.addObject("15 ft away", "fifteen");
+		
+		// chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putData("Choose Alliance", colorChooser);
+		SmartDashboard.putData("Choose the Shooter Distance", shooterChooser);
 		
 		SwerveDrive.steeringMotorFrontRight.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
         SwerveDrive.steeringMotorFrontRight.configNominalOutputVoltage(+0.0f, -0.0f);
@@ -145,8 +143,6 @@ public class Robot extends IterativeRobot {
         
         
         SwerveDrive.gyro.calibrate();
-      
-		
 		    
 	}
 
@@ -156,12 +152,14 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	@Override
-	public void disabledInit() {
+	public void disabledInit() 
+	{
 		 
 	}
 
 	@Override
-	public void disabledPeriodic() {
+	public void disabledPeriodic() 
+	{
 		
 		Scheduler.getInstance().run();
 	}
@@ -179,27 +177,28 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-//		allianceColor= colorChooser.getSelected();
-//		if(allianceColor=="Red")
-//		{
-//			allianceConstant=1;
-//		}
-//		if(allianceColor=="Blue")
-//		{
-//			allianceConstant=-1;
-//		}
-//		shooterPosition = shooterChooser.getSelected();
-//		if(shooterPosition == "eight")
-//		{
-//			shooterSpeed = 475;
-//		}
-//		if( shooterPosition == "fifteen")
-//		{
-//			shooterSpeed = 500;
-//		}
-//		
-//		
-//       autonomousCommand = (Command) autoChooser.getSelected();
+		allianceColor= colorChooser.getSelected();
+		if(allianceColor=="Red")
+		{
+			allianceConstant=1;
+		}
+		if(allianceColor=="Blue")
+		{
+			allianceConstant=-1;
+		}
+		
+		shooterPosition = shooterChooser.getSelected();
+		if(shooterPosition == "eight")
+		{
+			shooterSpeed = 475;
+		}
+		if( shooterPosition == "fifteen")
+		{
+			shooterSpeed = 500;
+		}
+		
+		
+       autonomousCommand = (Command) autoChooser.getSelected();
        
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -222,7 +221,8 @@ public class Robot extends IterativeRobot {
 	}
 
 	@Override
-	public void teleopInit() {
+	public void teleopInit()
+	{
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -235,17 +235,17 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	@Override
-	public void teleopPeriodic() {
-		
+	public void teleopPeriodic() 
+	{
 		Scheduler.getInstance().run();
-	
 	}
 
 	/**
 	 * This function is called periodically during test mode
 	 */
 	@Override
-	public void testPeriodic() {
+	public void testPeriodic() 
+	{
 		LiveWindow.run();
 	}
 	
