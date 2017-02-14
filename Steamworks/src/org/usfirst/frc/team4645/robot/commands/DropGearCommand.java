@@ -15,7 +15,7 @@ public class DropGearCommand extends Command {
 	// Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 	requires(Robot.gearSubsystem);
-	setTimeout(1);
+	
 }
 
 // Called just before this Command runs the first time
@@ -32,13 +32,13 @@ protected void execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 protected boolean isFinished() {
-    return isTimedOut();
+    return false;
 }
 
 // Called once after isFinished returns true
 protected void end() {
 	
-	Robot.gearSubsystem.resetDropGear();
+	
 	
 
 }
