@@ -29,7 +29,7 @@ public class PlaceGearCommand extends CommandGroup {
     	
     	
     	
-    	double degreeToGear=60 *whichGear* auto;//This depends on which gear spot is being target
+    	double degreeToGear=60 * whichGear * auto;//This depends on which gear spot is being target
     	    	
        	double idealYDistance=0;
     	double idealXDistance=0;
@@ -50,8 +50,10 @@ public class PlaceGearCommand extends CommandGroup {
     	
     	addSequential(new MoveToY(1));//how ever many meters to actually place gear
     	
-    	addSequential(new PushGearCommand());
     	addSequential( new MoveToY(-1));
+    	
+    	addSequential(new ResetGearCommand());
+    	
     	
     	//this series of steps will center on the gear, drive forwards, place the gear and then drive backwards
     	//if the robot will need to wait some amount of time before driving backwards then a delay will
