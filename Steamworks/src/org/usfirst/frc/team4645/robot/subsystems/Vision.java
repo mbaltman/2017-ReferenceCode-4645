@@ -40,12 +40,9 @@ public class Vision extends Subsystem {
 	private final Object imgLockGear = new Object();
 	
 	
-
-    
-    public void initDefaultCommand() 
-    {
-        
-    	UsbCamera cameraBoiler = CameraServer.getInstance().startAutomaticCapture(0);
+	public Vision()
+	{
+		UsbCamera cameraBoiler = CameraServer.getInstance().startAutomaticCapture(0);
     	
     	UsbCamera cameraGear = CameraServer.getInstance().startAutomaticCapture(1);
 		
@@ -75,6 +72,7 @@ public class Vision extends Subsystem {
 		    );
 		    visionThreadBoiler.start();
 		    
+		    
 		    visionThreadGear = new VisionThread(cameraGear, new Pipeline(), pipeline -> 
 		    {
 		        if (!pipeline.filterContoursOutput().isEmpty())
@@ -101,13 +99,19 @@ public class Vision extends Subsystem {
 		    visionThreadGear.start();
 		    
 		    setDefaultCommand(new testValuesVision());
+	}
+    
+    public void initDefaultCommand() 
+    {
+        
+    	
 	} 
 	
 	    
     
    
     public double[] returnBoilerInformation()
-    {
+	{
     	
     	double[] coordinate={0,0,0,0,0,0};
     	
@@ -134,9 +138,9 @@ public class Vision extends Subsystem {
 		
     	return coordinate;
 	
-    }
+	}
     public double[] returnGearInformation()
-    {
+   	{
        	
        	double[] coordinate={0,0,0,0,0,0};
        	
