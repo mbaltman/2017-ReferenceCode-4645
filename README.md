@@ -13,7 +13,7 @@ This project is a command based program.  It has a single subsystem which makes 
 This is a Command Based Program which controls all of the Subsystems on the robot.  It also contains 3 autonomous codes for the three starting positions, the angles that the robot turns are determined by which alliance color you are.
 
 ### Tasks left
-Control of the camera position with a servo
+
 The exact angles and distances for autonomous
 SmartDashboard interface that allows the drivers to input 
   
