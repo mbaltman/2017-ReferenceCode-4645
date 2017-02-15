@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Intake extends Subsystem {
+public class Intake extends Subsystem 
+{
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public static final Talon intake =  new Talon(RobotMap.intakeMotor);
+	public static final Talon intakeMotor =  new Talon(RobotMap.intakeMotor);
 	
 	
     public void initDefaultCommand() 
@@ -25,12 +26,12 @@ public class Intake extends Subsystem {
     }
     public void intakeIn()
     {
-    	intake.set(-.7);
+    	intakeMotor.set(-.7);
     	
     }
     public void intakeStop()
     {
-    	intake.set(0);
+    	intakeMotor.set(0);
     }
     
     
