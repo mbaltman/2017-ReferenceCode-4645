@@ -71,8 +71,10 @@ public class Robot extends IterativeRobot
     public static int allianceConstant=1;
 	public String allianceColor= null;
 	
-	public static int shooterSpeed=0;
 	public String shooterPosition=  null;
+	double shooterSpeed;
+	
+	public static boolean auto;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -141,8 +143,20 @@ public class Robot extends IterativeRobot
         SwerveDrive.drivingMotorBackRight.setP(0);
         SwerveDrive.drivingMotorBackRight.setD(0);
         
-        
         SwerveDrive.gyro.calibrate();
+        
+        Shooter.shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        //shooter.reverseSensor(false);
+        //shooter.configEncoderCodesPerRev(80); // if using FeedbackDevice.QuadEncoder
+        //shooter.configPotentiometerTurns(XXX), // if using FeedbackDevice.AnalogEncoder or AnalogPot
+
+        /* set the peak and nominal outputs, 12V means full */
+        Shooter.shooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+        Shooter.shooterMotor.configPeakOutputVoltage(+0.0f, -12.0f);
+        Shooter.shooterMotor.setF(1.557);
+        Shooter.shooterMotor.setP(4.092);
+        Shooter.shooterMotor.setI(0); 
+        Shooter.shooterMotor.setD(81.84);
 		    
 	}
 
@@ -176,8 +190,7 @@ public class Robot extends IterativeRobot
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
-	public void autonomousInit() 
-	{
+	public void autonomousInit() {
 		allianceColor= colorChooser.getSelected();
 		if(allianceColor=="Red")
 		{
@@ -191,13 +204,14 @@ public class Robot extends IterativeRobot
 		shooterPosition = shooterChooser.getSelected();
 		if(shooterPosition == "eight")
 		{
-			shooterSpeed = 475;
+			shooterSpeed = -475;
 		}
 		if( shooterPosition == "fifteen")
 		{
-			shooterSpeed = 500;
+			shooterSpeed = -500;
 		}
 		
+		auto = true;
 		
        autonomousCommand = (Command) autoChooser.getSelected();
        
@@ -217,8 +231,7 @@ public class Robot extends IterativeRobot
 	 * This function is called periodically during autonomous
 	 */
 	@Override
-	public void autonomousPeriodic() 
-	{
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
@@ -231,6 +244,8 @@ public class Robot extends IterativeRobot
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
+		auto = false;
 	}
 
 	/**
