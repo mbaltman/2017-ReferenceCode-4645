@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CenterAndShootCommand extends CommandGroup {
+public class CenterAndShootCommand extends CommandGroup 
+{
 
     public CenterAndShootCommand() 
     {
