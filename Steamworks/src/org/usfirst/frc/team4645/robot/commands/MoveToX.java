@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveToX extends Command {
+public class MoveToX extends Command 
+{
 
 	double distance;
 	double drivingDistance;
@@ -20,7 +21,8 @@ public class MoveToX extends Command {
 	double curDrivFLPosition;
 	double curDrivBRPosition;
 	
-    public MoveToX(double distance) {
+    public MoveToX(double distance) 
+    {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.swerveDrive);
         this.distance = distance;
@@ -34,11 +36,13 @@ public class MoveToX extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
     	
     	
     	
@@ -82,7 +86,8 @@ public class MoveToX extends Command {
 		boolean finalBR = positionDifBR + RobotMap.BACKRIGHT_ERROR > -5 && positionDifBR + RobotMap.BACKRIGHT_ERROR < 5;
 		boolean finalBL = positionDifBL + RobotMap.BACKLEFT_ERROR > -5 && positionDifBL + RobotMap.BACKLEFT_ERROR < 5;
 		
-		if (finalFR && finalFL && finalBR && finalBL) {
+		if (finalFR && finalFL && finalBR && finalBL) 
+		{
 			SwerveDrive.drivingMotorFrontLeft.changeControlMode(TalonControlMode.Position);
 			SwerveDrive.drivingMotorFrontLeft.set(curDrivFLPosition + drivingDistance);
 			SwerveDrive.drivingMotorBackRight.changeControlMode(TalonControlMode.Position);
@@ -98,7 +103,8 @@ public class MoveToX extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished() 
+    {
     	if (SwerveDrive.drivingMotorFrontLeft.getEncPosition() < curDrivFLPosition + drivingDistance + 2 
         		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curDrivFLPosition + drivingDistance - 2) {
         	if (SwerveDrive.drivingMotorBackRight.getEncPosition() < curDrivBRPosition + drivingDistance + 2
@@ -110,11 +116,13 @@ public class MoveToX extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
     }
 }

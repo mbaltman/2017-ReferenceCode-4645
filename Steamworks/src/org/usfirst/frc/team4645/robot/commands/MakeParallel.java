@@ -13,14 +13,16 @@ import com.ctre.CANTalon.TalonControlMode;
 /**
  *
  */
-public class MakeParallel extends Command {
+public class MakeParallel extends Command 
+{
 	
 	double desAngle;
 	double curPositionFL;
 	double curPositionBR;
 	double drivingDistance;
 
-    public MakeParallel(double desAngle) {
+    public MakeParallel(double desAngle) 
+    {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
@@ -33,11 +35,13 @@ public class MakeParallel extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize()
+    {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
     	
     	//get gyro angle in radians
     	double gyroAngle = SwerveDrive.gyro.getAngle();
@@ -114,7 +118,8 @@ public class MakeParallel extends Command {
 		boolean finalBR = positionDifBR + RobotMap.BACKRIGHT_ERROR > -5 && positionDifBR + RobotMap.BACKRIGHT_ERROR < 5;
 		boolean finalBL = positionDifBL + RobotMap.BACKLEFT_ERROR > -5 && positionDifBL + RobotMap.BACKLEFT_ERROR < 5;
 		
-		if (finalFR && finalFL && finalBR && finalBL) {
+		if (finalFR && finalFL && finalBR && finalBL) 
+		{
 			SwerveDrive.drivingMotorFrontLeft.changeControlMode(TalonControlMode.Position);
 			SwerveDrive.drivingMotorFrontLeft.set(curPositionFL + drivingDistance);
 			SwerveDrive.drivingMotorBackRight.changeControlMode(TalonControlMode.Position);
@@ -131,7 +136,8 @@ public class MakeParallel extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished() 
+    {
         if (SwerveDrive.drivingMotorFrontLeft.getEncPosition() < curPositionFL + drivingDistance + 2 
         		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curPositionFL + drivingDistance - 2) {
         	if (SwerveDrive.drivingMotorBackRight.getEncPosition() < curPositionBR + drivingDistance + 2
@@ -143,11 +149,13 @@ public class MakeParallel extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
     }
 }

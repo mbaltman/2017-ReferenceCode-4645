@@ -12,9 +12,11 @@ import org.usfirst.frc.team4645.robot.RobotMap;
 /**
  *
  */
-public class DefaultSwerve extends Command {
+public class DefaultSwerve extends Command
+{
 
-    public DefaultSwerve() {
+    public DefaultSwerve() 
+    {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
@@ -22,11 +24,13 @@ public class DefaultSwerve extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
     	
     	//get gyro position
     	double gyroPosition = (SwerveDrive.gyro.getAngle()) * (1023/360);
@@ -78,7 +82,8 @@ public class DefaultSwerve extends Command {
 		
 		double max = Robot.swerveDrive.calcMax(totalFR, totalFL, totalBR, totalBL);
 		
-		if (max > 1) {
+		if (max > 1)
+		{
 			totalFR /= max;
 			totalFL /= max;
 			totalBR /= max;
@@ -102,7 +107,8 @@ public class DefaultSwerve extends Command {
 		double positionDifBL = Robot.swerveDrive.getPositionDif(newXMagBL, newYMagBL);
 		
 		//set motor output
-		if (max > 0.15) {
+		if (max > 0.15) 
+		{
 			
 			Robot.swerveDrive.setSteeringPosition(SwerveDrive.steeringMotorFrontRight, curFRPosition, positionDifFR, gyroPosition, RobotMap.FRONTRIGHT_ERROR);
 			Robot.swerveDrive.setSteeringPosition(SwerveDrive.steeringMotorFrontLeft, curFLPosition, positionDifFL, gyroPosition, RobotMap.FRONTLEFT_ERROR);
@@ -115,7 +121,8 @@ public class DefaultSwerve extends Command {
 			SwerveDrive.drivingMotorBackLeft.set(totalBL);
 			
 		}
-		else {
+		else 
+		{
 			SwerveDrive.drivingMotorFrontRight.set(0);
 			SwerveDrive.drivingMotorFrontLeft.set(0);
 			SwerveDrive.drivingMotorBackRight.set(0);
@@ -127,17 +134,20 @@ public class DefaultSwerve extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished() 
+    {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+    {
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
     }
     
     

@@ -4,9 +4,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team4645.robot.Robot;
 import org.usfirst.frc.team4645.robot.RobotMap;
 
-public class AutonomousMiddle extends CommandGroup {
+public class AutonomousMiddle extends CommandGroup 
+{
 
-    public AutonomousMiddle() {
+    public AutonomousMiddle() 
+    {
        
     	
     	addSequential(new PlaceGearCommand(0, Robot.allianceConstant));//This will center on the gear system and place it

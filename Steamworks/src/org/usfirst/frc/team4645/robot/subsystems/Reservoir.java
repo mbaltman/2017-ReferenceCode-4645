@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj.Servo;
 /**
  *
  */
-public class Reservoir extends Subsystem {
+public class Reservoir extends Subsystem 
+{
 
 	public static final Servo servo1 =  new Servo(RobotMap.reservoirServo);
 
-    public void initDefaultCommand() {
+    public void initDefaultCommand() 
+    {
     	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

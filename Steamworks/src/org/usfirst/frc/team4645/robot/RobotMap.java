@@ -9,17 +9,10 @@ import edu.wpi.first.wpilibj.Servo;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {
-	
-	
-	
-	
-	
+public class RobotMap 
+{
 	
 
-	
-	
-	
 	public static final int reservoirServo = 0;
 	
 	public static final int gearServoDrop =1;

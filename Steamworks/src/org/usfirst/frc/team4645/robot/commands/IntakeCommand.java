@@ -6,37 +6,44 @@ import org.usfirst.frc.team4645.robot.*;
 /**
  *
  */
-public class IntakeCommand extends Command {
+public class IntakeCommand extends Command 
+{
 
-    public IntakeCommand() {
+    public IntakeCommand() 
+    {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intakeSubsystem);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
     	Robot.intakeSubsystem.intakeStop();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
     	Robot.intakeSubsystem.intakeIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished()
+    {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
     	Robot.intakeSubsystem.intakeStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
     	Robot.intakeSubsystem.intakeStop();
     }
 }

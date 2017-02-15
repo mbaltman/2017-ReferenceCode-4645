@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonomousNextToBoiler extends CommandGroup {
+public class AutonomousNextToBoiler extends CommandGroup 
+{
 
     public AutonomousNextToBoiler() 
     {

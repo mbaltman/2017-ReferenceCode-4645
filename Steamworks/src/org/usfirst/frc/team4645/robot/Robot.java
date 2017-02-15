@@ -176,7 +176,8 @@ public class Robot extends IterativeRobot
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
-	public void autonomousInit() {
+	public void autonomousInit() 
+	{
 		allianceColor= colorChooser.getSelected();
 		if(allianceColor=="Red")
 		{
@@ -216,7 +217,8 @@ public class Robot extends IterativeRobot
 	 * This function is called periodically during autonomous
 	 */
 	@Override
-	public void autonomousPeriodic() {
+	public void autonomousPeriodic() 
+	{
 		Scheduler.getInstance().run();
 	}
 

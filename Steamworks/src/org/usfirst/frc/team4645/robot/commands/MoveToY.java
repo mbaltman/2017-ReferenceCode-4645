@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveToY extends Command {
+public class MoveToY extends Command 
+{
 	
 	double distance;
 	double drivingDistance;
@@ -20,7 +21,8 @@ public class MoveToY extends Command {
 	double curDrivFLPosition;
 	double curDrivBRPosition;
 	
-    public MoveToY(double distance) {
+    public MoveToY(double distance) 
+    {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.swerveDrive);
@@ -35,11 +37,13 @@ public class MoveToY extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
     	
     	
     	//get wheel positions
@@ -97,7 +101,8 @@ public class MoveToY extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished() 
+    {
     	if (SwerveDrive.drivingMotorFrontLeft.getEncPosition() < curDrivFLPosition + drivingDistance + 2 
         		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curDrivFLPosition + drivingDistance - 2) {
         	if (SwerveDrive.drivingMotorBackRight.getEncPosition() < curDrivBRPosition + drivingDistance + 2
@@ -109,11 +114,13 @@ public class MoveToY extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
     }
 }

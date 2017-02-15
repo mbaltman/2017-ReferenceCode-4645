@@ -7,9 +7,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class PlaceGearCommand extends CommandGroup {
+public class PlaceGearCommand extends CommandGroup 
+{
 
-    public PlaceGearCommand(int whichGear,int auto ) {
+    public PlaceGearCommand(int whichGear,int auto ) 
+    {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
