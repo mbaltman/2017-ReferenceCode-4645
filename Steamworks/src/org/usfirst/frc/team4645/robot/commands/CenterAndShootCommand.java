@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4645.robot.commands;
 
+import org.usfirst.frc.team4645.robot.OI;
 import org.usfirst.frc.team4645.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -7,8 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CenterAndShootCommand extends CommandGroup 
-{
+public class CenterAndShootCommand extends CommandGroup {
 
     public CenterAndShootCommand() 
     {
@@ -29,8 +29,12 @@ public class CenterAndShootCommand extends CommandGroup
         distanceInformation=(Robot.visionSubsystem.returnBoilerInformation());//updates vision values
         
     	addSequential(new MoveToY(idealYDistance-distanceInformation[1]));//moves in Y
-        addSequential(new ShootCommand());//shoots until interrupted unless command group is called with a timer
-        addParallel(new ReservoirCommand(),10);//shoot and reservoir move at once
+    	
+    	while (OI.leftJoy.getTrigger() || Robot.auto)
+    	{
+    		Robot.shooterSubsystem.shoot(-475);
+    		Robot.reservoirSubsystem.alternate();
+    	}
         
     	// this command centers on the boiler 
     }
