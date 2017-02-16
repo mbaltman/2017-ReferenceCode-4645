@@ -31,7 +31,11 @@ public class DefaultSwerve extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	
+    	//get joystick mags
+	double tempXMag = -OI.leftJoy.getX();
+	double tempYMag = OI.leftJoy.getY();
+	double tempZMag = Robot.swerveDrive.getZMag(OI.leftJoy.getZ());
+	
     	//get gyro position
     	double gyroPosition = (SwerveDrive.gyro.getAngle()) * (1023/360);
     	
@@ -48,30 +52,30 @@ public class DefaultSwerve extends Command
     	double curBLAngle = Robot.swerveDrive.getAngle(curBLPosition);
     	
     	//get rotation angles
-    	double rotFRAngle = Robot.swerveDrive.getRotationAngle(OI.tempZMag, RobotMap.FRONTRIGHT_RADANGLE);
-    	double rotFLAngle = Robot.swerveDrive.getRotationAngle(OI.tempZMag, RobotMap.FRONTLEFT_RADANGLE);
-    	double rotBRAngle = Robot.swerveDrive.getRotationAngle(OI.tempZMag, RobotMap.BACKRIGHT_RADANGLE);
-    	double rotBLAngle = Robot.swerveDrive.getRotationAngle(OI.tempZMag, RobotMap.BACKLEFT_RADANGLE);
+    	double rotFRAngle = Robot.swerveDrive.getRotationAngle(tempZMag, RobotMap.FRONTRIGHT_RADANGLE);
+    	double rotFLAngle = Robot.swerveDrive.getRotationAngle(tempZMag, RobotMap.FRONTLEFT_RADANGLE);
+    	double rotBRAngle = Robot.swerveDrive.getRotationAngle(tempZMag, RobotMap.BACKRIGHT_RADANGLE);
+    	double rotBLAngle = Robot.swerveDrive.getRotationAngle(tempZMag, RobotMap.BACKLEFT_RADANGLE);
     	
     	//get rotation components
-    	double radXFR = Robot.swerveDrive.getRotCompX(rotFRAngle, OI.tempZMag);
-    	double radYFR = Robot.swerveDrive.getRotCompY(rotFRAngle, OI.tempZMag);
-    	double radXFL = Robot.swerveDrive.getRotCompX(rotFLAngle, OI.tempZMag);
-    	double radYFL = Robot.swerveDrive.getRotCompY(rotFLAngle, OI.tempZMag);
-    	double radXBR = Robot.swerveDrive.getRotCompX(rotBRAngle, OI.tempZMag);
-    	double radYBR = Robot.swerveDrive.getRotCompY(rotBRAngle, OI.tempZMag);
-    	double radXBL = Robot.swerveDrive.getRotCompX(rotBLAngle, OI.tempZMag);
-    	double radYBL = Robot.swerveDrive.getRotCompY(rotBLAngle, OI.tempZMag);
+    	double radXFR = Robot.swerveDrive.getRotCompX(rotFRAngle, tempZMag);
+    	double radYFR = Robot.swerveDrive.getRotCompY(rotFRAngle, tempZMag);
+    	double radXFL = Robot.swerveDrive.getRotCompX(rotFLAngle, tempZMag);
+    	double radYFL = Robot.swerveDrive.getRotCompY(rotFLAngle, tempZMag);
+    	double radXBR = Robot.swerveDrive.getRotCompX(rotBRAngle, tempZMag);
+    	double radYBR = Robot.swerveDrive.getRotCompY(rotBRAngle, tempZMag);
+    	double radXBL = Robot.swerveDrive.getRotCompX(rotBLAngle, tempZMag);
+    	double radYBL = Robot.swerveDrive.getRotCompY(rotBLAngle, tempZMag);
 		
 		//calc total components
-    	double totalXFR = Robot.swerveDrive.getTotalComp(radXFR, OI.tempXMag);
-    	double totalYFR = Robot.swerveDrive.getTotalComp(radYFR, OI.tempYMag);
-    	double totalXFL = Robot.swerveDrive.getTotalComp(radXFL, OI.tempXMag);
-    	double totalYFL = Robot.swerveDrive.getTotalComp(radYFL, OI.tempYMag);
-    	double totalXBR = Robot.swerveDrive.getTotalComp(radXBR, OI.tempXMag);
-    	double totalYBR = Robot.swerveDrive.getTotalComp(radYBR, OI.tempYMag);
-    	double totalXBL = Robot.swerveDrive.getTotalComp(radXBL, OI.tempXMag);
-    	double totalYBL = Robot.swerveDrive.getTotalComp(radYBL, OI.tempYMag);
+    	double totalXFR = Robot.swerveDrive.getTotalComp(radXFR, tempXMag);
+    	double totalYFR = Robot.swerveDrive.getTotalComp(radYFR, tempYMag);
+    	double totalXFL = Robot.swerveDrive.getTotalComp(radXFL, tempXMag);
+    	double totalYFL = Robot.swerveDrive.getTotalComp(radYFL, tempYMag);
+    	double totalXBR = Robot.swerveDrive.getTotalComp(radXBR, tempXMag);
+    	double totalYBR = Robot.swerveDrive.getTotalComp(radYBR, tempYMag);
+    	double totalXBL = Robot.swerveDrive.getTotalComp(radXBL, tempXMag);
+    	double totalYBL = Robot.swerveDrive.getTotalComp(radYBL, tempYMag);
 		
 		
 		//calc total mags and max
