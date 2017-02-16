@@ -22,20 +22,12 @@ public class OI
 	Button buttonMiddleGear = new JoystickButton(leftJoy, 6);
 	Button buttonRightGear = new JoystickButton(leftJoy, 6);
 	
-	public static double tempXMag;
-	public static double tempYMag;
-	public static double tempZMag;
+	
 	
 	public static Button resetGyro = new JoystickButton(leftJoy, 7);
 	
 	public OI()
 	{
-		
-		tempXMag = -leftJoy.getX();
-		tempYMag = leftJoy.getY();
-		tempZMag = leftJoy.getZ();
-		
-		
 		
 		resetGyro.whenPressed(new ResetGyro());
 
