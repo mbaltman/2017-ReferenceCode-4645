@@ -106,9 +106,11 @@ public class MoveToX extends Command
     protected boolean isFinished() 
     {
     	if (SwerveDrive.drivingMotorFrontLeft.getEncPosition() < curDrivFLPosition + drivingDistance + 2 
-        		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curDrivFLPosition + drivingDistance - 2) {
+        		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curDrivFLPosition + drivingDistance - 2) 
+	{
         	if (SwerveDrive.drivingMotorBackRight.getEncPosition() < curDrivBRPosition + drivingDistance + 2
-        			&& SwerveDrive.drivingMotorBackRight.getEncPosition() > curDrivBRPosition + drivingDistance -2) {
+        			&& SwerveDrive.drivingMotorBackRight.getEncPosition() > curDrivBRPosition + drivingDistance -2)
+		{
         		return true;
         	}
         }
