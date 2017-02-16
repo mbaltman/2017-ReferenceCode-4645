@@ -148,6 +148,10 @@ public class DefaultSwerve extends Command
     // subsystems is scheduled to run
     protected void interrupted() 
     {
+    	SwerveDrive.drivingMotorFrontRight.set(0);
+	SwerveDrive.drivingMotorFrontLeft.set(0);
+	SwerveDrive.drivingMotorBackRight.set(0);
+	SwerveDrive.drivingMotorBackLeft.set(0);
     }
     
     
