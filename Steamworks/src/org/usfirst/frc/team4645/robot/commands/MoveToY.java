@@ -86,7 +86,8 @@ public class MoveToY extends Command
 		boolean finalBR = positionDifBR + RobotMap.BACKRIGHT_ERROR > -5 && positionDifBR + RobotMap.BACKRIGHT_ERROR < 5;
 		boolean finalBL = positionDifBL + RobotMap.BACKLEFT_ERROR > -5 && positionDifBL + RobotMap.BACKLEFT_ERROR < 5;
 		
-		if (finalFR && finalFL && finalBR && finalBL) {
+		if (finalFR && finalFL && finalBR && finalBL)
+		{
 			SwerveDrive.drivingMotorFrontLeft.changeControlMode(TalonControlMode.Position);
 			SwerveDrive.drivingMotorFrontLeft.set(curDrivFLPosition + drivingDistance);
 			SwerveDrive.drivingMotorBackRight.changeControlMode(TalonControlMode.Position);
@@ -104,9 +105,11 @@ public class MoveToY extends Command
     protected boolean isFinished() 
     {
     	if (SwerveDrive.drivingMotorFrontLeft.getEncPosition() < curDrivFLPosition + drivingDistance + 2 
-        		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curDrivFLPosition + drivingDistance - 2) {
+        		&& SwerveDrive.drivingMotorFrontLeft.getEncPosition() > curDrivFLPosition + drivingDistance - 2) 
+	{
         	if (SwerveDrive.drivingMotorBackRight.getEncPosition() < curDrivBRPosition + drivingDistance + 2
-        			&& SwerveDrive.drivingMotorBackRight.getEncPosition() > curDrivBRPosition + drivingDistance -2) {
+        			&& SwerveDrive.drivingMotorBackRight.getEncPosition() > curDrivBRPosition + drivingDistance -2) 
+		{
         		return true;
         	}
         }
