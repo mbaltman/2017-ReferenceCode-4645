@@ -32,6 +32,24 @@ public class SwerveDrive extends Subsystem
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
+	public double getZMag(double initialZMag)
+	{
+		if (initialZMag < 0.2 && initialZMag > -0.2) 
+		{
+			initialZMag = 0;
+		}
+		if (initialZMag < 0) 
+		{
+			initialZMag += 0.2;
+		}
+		else if (initialZMag > 0) 
+		{
+			initialZMag -= 0.2;
+		}
+		
+		return initialZMag;
+	}
+	
 	public double getPosition(CANTalon steeringMotor)
 	{
 		double position = steeringMotor.getAnalogInPosition();
