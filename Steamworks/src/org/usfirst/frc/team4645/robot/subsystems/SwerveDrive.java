@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 /**
  *
  */
-public class SwerveDrive extends Subsystem {
+public class SwerveDrive extends Subsystem 
+{
 	
 	public static CANTalon steeringMotorFrontRight = new CANTalon(RobotMap.steerFR);
 	public static CANTalon steeringMotorFrontLeft = new CANTalon(RobotMap.steerFL);
@@ -31,13 +32,15 @@ public class SwerveDrive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	public double getPosition(CANTalon steeringMotor) {
+	public double getPosition(CANTalon steeringMotor)
+	{
 		double position = steeringMotor.getAnalogInPosition();
 		
 		return position;
 	}
 	
-	public double getAngle(double position) {
+	public double getAngle(double position) 
+	{
 		double angle = position % 1023;
 		if (angle < 0) { angle += 1023; }
 		angle *= ((2*Math.PI) / 1023);
@@ -45,7 +48,8 @@ public class SwerveDrive extends Subsystem {
 		return angle;
 	}
 	
-	public double getRotationAngle(double joystickZ, double finalRad) {
+	public double getRotationAngle(double joystickZ, double finalRad) 
+	{
 		double angleZ = 90 * Math.signum(joystickZ);
 		double rotAngle = angleZ + finalRad;
 		rotAngle *= (Math.PI / 180);
@@ -53,23 +57,27 @@ public class SwerveDrive extends Subsystem {
 		return rotAngle;
 	}
 	
-	public double getRotCompX (double angle, double mag) {
+	public double getRotCompX (double angle, double mag) 
+	{
 		double rotCompX = Math.cos(angle) * Math.abs(mag);
 		
 		return rotCompX;
 	}
 	
-	public double getRotCompY (double angle, double mag) {
+	public double getRotCompY (double angle, double mag)
+	{
 		double rotCompY = Math.sin(angle) * Math.abs(mag);
 		
 		return rotCompY;
 	}
 	
-	public double getTotalComp(double rotComp, double linComp) {
+	public double getTotalComp(double rotComp, double linComp) 
+	{
 		return (rotComp + linComp);
 	}
 	
-	public double calcMax(double totalFR, double totalFL, double totalBR, double totalBL) {
+	public double calcMax(double totalFR, double totalFL, double totalBR, double totalBL) 
+	{
 		double max = totalFR;
 		if (totalFL > max) {max = totalFL;}
 		if (totalBR > max) {max = totalBR;}
@@ -78,26 +86,30 @@ public class SwerveDrive extends Subsystem {
 		return max;
 	}
 	
-	public double calcRelMagX (double xMag, double yMag, double angle) {
+	public double calcRelMagX (double xMag, double yMag, double angle) 
+	{
 		double posDif = ((xMag * Math.cos(angle)) + (yMag * Math.sin(angle)));
 		
 		return posDif;
 	}
 	
-	public double calcRelMagY (double yMag, double xMag, double angle) {
+	public double calcRelMagY (double yMag, double xMag, double angle) 
+	{
 		double posDif = ((yMag * Math.cos(angle)) - (xMag * Math.sin(angle)));
 		
 		return posDif;
 	}
 	
-	public double getPositionDif(double magX, double magY) {
+	public double getPositionDif(double magX, double magY) 
+	{
 		double posDif = Math.atan2(magY, magX);
 		posDif *= (1023/(2 * Math.PI));
 		
 		return posDif;
 	}
 	
-	public void setSteeringPosition(CANTalon motor, double curPos, double posDif, double gyroPos, double error) {
+	public void setSteeringPosition(CANTalon motor, double curPos, double posDif, double gyroPos, double error)
+	{
 		motor.changeControlMode(CANTalon.TalonControlMode.Position);
 		motor.set(curPos + posDif + gyroPos + error);
 		
@@ -105,7 +117,8 @@ public class SwerveDrive extends Subsystem {
 	
 	
 	
-    public void initDefaultCommand() {
+    public void initDefaultCommand() 
+    {
         // Set the default command for a subsystem here.
         setDefaultCommand(new DefaultSwerve());
     }
