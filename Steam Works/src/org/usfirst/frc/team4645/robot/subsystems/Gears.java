@@ -24,7 +24,7 @@ public class Gears extends Subsystem
     }
     public void dropGear()
     {
-    	gearDropServo.set(0);
+    	gearDropServo.set(1);
     }
    
     public void resetDropGear()
@@ -34,7 +34,7 @@ public class Gears extends Subsystem
    
     public void pushGear()
     {
-    	gearPushServo.set(0);
+    	gearPushServo.set(1);
     }
    
     public void resetPushGear()
