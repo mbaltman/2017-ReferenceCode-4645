@@ -48,7 +48,7 @@ public class PlaceGearCommand extends CommandGroup
      	addSequential(new MoveToY(idealYDistance-distanceInformation[1]));//moves in Y
      	
      //At this point the Robot is Some known distance from the gear and centered on it 
-    	addSequential(new DropGearCommand());
+    	
     	
     	addSequential(new MoveToY(1));//how ever many meters to actually place gear
     	

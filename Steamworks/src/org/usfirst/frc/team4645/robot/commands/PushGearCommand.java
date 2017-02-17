@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DropGearCommand extends Command {
+public class PushGearCommand extends Command {
 
-    public DropGearCommand() {
-        // Use requires() here to declare subsystem dependencies
+    public PushGearCommand() {
+        // Use requires() here to declare subs;ystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearSubsystem);
     }
@@ -22,12 +22,12 @@ public class DropGearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearSubsystem.dropGear();
+    	Robot.gearSubsystem.pushGear();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Gears.gearDropServo.get()>.95;
+        return Gears.gearPushServo.get()>.99;
     }
 
     // Called once after isFinished returns true
