@@ -15,6 +15,9 @@ public class OI
 	
 	public static Joystick leftJoy = new Joystick(1);
 	Button buttonShoot = new JoystickButton(leftJoy, 1);
+	
+	Button testShoot = new JoystickButton(leftJoy,3);
+	
 	Button buttonIntake = new JoystickButton(leftJoy, 4);
 	Button buttonClimb = new JoystickButton(leftJoy, 5);
 	
@@ -32,13 +35,16 @@ public class OI
 		resetGyro.whenPressed(new ResetGyro());
 
 		
-		buttonLeftGear.whenPressed(new PlaceGearCommand(1,1));
-	    buttonMiddleGear.whenPressed(new PlaceGearCommand(0,1));
-		buttonRightGear.whenPressed(new PlaceGearCommand(-1,1));
+		//buttonLeftGear.whenPressed(new PlaceGearCommand(1,1));
+	    //buttonMiddleGear.whenPressed(new PlaceGearCommand(0,1));
+		//buttonRightGear.whenPressed(new PlaceGearCommand(-1,1));
 		
-		buttonShoot.whenPressed(new CenterAndShootCommand());
-		buttonIntake.whileHeld(new IntakeCommand());
-		buttonClimb.whileHeld(new ClimbCommand());
+		//buttonShoot.whenPressed(new CenterAndShootCommand());
+		//buttonIntake.whileHeld(new IntakeCommand());
+		//buttonClimb.whileHeld(new ClimbCommand());
+		
+		testShoot.whileHeld(new TestShoot());
+		
 	
 	}
 
