@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot
     SendableChooser<String> colorChooser = new SendableChooser<>();
     
     SendableChooser<String> shooterChooser = new SendableChooser<>();
+    SendableChooser testChooser = new SendableChooser();
     
     //basic Commands
     Command ClimbCommand;
@@ -83,6 +84,7 @@ public class Robot extends IterativeRobot
 	public void robotInit() 
 	{
 		oi = new OI();
+		
 		autoChooser.addDefault("Default Auto",null);
 		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
 		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
