@@ -4,6 +4,7 @@ import org.usfirst.frc.team4645.robot.OI;
 import org.usfirst.frc.team4645.robot.Robot;
 import org.usfirst.frc.team4645.robot.RobotMap;
 
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -40,19 +41,25 @@ public class Shooter extends Subsystem
     	shooterMotor.changeControlMode(TalonControlMode.Speed);
     	shooterMotor.set(speed);
     	
-    	if (shooterMotor.getEncVelocity() < speed)
-    	{
-    		feederMotor.set(-1);
-    	}
-    	else
-    	{
-    		feederMotor.set(0);
-    	}
+    	//if (shooterMotor.getEncVelocity() < -(speed - 30))
+    	//{
+    	feederMotor.set(-1);
+    	//}
+    	//else
+    	//{
+    		//feederMotor.set(0);
+    	//}
     }
     public void shooterStop()
     {
+    	shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
     	shooterMotor.set(0);
     	feederMotor.set(0);
+    }
+    
+    public void feeder()
+    {
+    	feederMotor.set(-1);
     }
 
 

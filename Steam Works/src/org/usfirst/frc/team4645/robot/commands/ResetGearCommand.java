@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4645.robot.commands;
 
 import org.usfirst.frc.team4645.robot.Robot;
-import org.usfirst.frc.team4645.robot.subsystems.Gears;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -33,7 +32,7 @@ public class ResetGearCommand extends Command
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() 
     {
-        return Gears.gearDropServo.get()<.1 && Gears.gearPushServo.get()<.1;
+        return false;
     }
 
     // Called once after isFinished returns true

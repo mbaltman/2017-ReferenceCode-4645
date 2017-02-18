@@ -44,16 +44,13 @@ public class Robot extends IterativeRobot
     Command PlaceGearCommand;
 	//Autonomous Commands
     Command autonomousCommand;
-    Command AutonomousMiddle;
-    Command AutonomousNextToBoiler;
-    Command AutonomousNextToLoadingStation;
-   
-    SendableChooser<Command> autoChooser = new SendableChooser<>();
     
-    SendableChooser<String> colorChooser = new SendableChooser<>();
     
-    SendableChooser<String> shooterChooser = new SendableChooser<>();
-    SendableChooser testChooser = new SendableChooser();
+    public static SendableChooser<String> allianceChooser = new SendableChooser<>();
+    
+    public static SendableChooser<String> positionChooser = new SendableChooser<>();
+    
+    public static SendableChooser<Double> shooterChooser = new SendableChooser<>();
     
     //basic Commands
     Command ClimbCommand;
@@ -85,23 +82,25 @@ public class Robot extends IterativeRobot
 	{
 		oi = new OI();
 		
-		autoChooser.addDefault("Default Auto",null);
-		autoChooser.addObject("Autonomous Next to Boiler", new AutonomousNextToBoiler());
-		autoChooser.addObject("Autonomous Middle Position", new AutonomousMiddle());
-		autoChooser.addObject("Autonomous Next to Loading Station", new AutonomousNextToLoadingStation());
 		
 		
-		colorChooser.addDefault("Practice Alliance:RED", "Red");
-		colorChooser.addObject("Blue Alliance", "Blue");
-		colorChooser.addObject("Red Alliance", "Red");
+		allianceChooser.addDefault("Practice Alliance:RED", "Red");
+		allianceChooser.addObject("Blue Alliance", "Blue");
+		allianceChooser.addObject("Red Alliance", "Red");
 		
-		shooterChooser.addDefault("8ft away", "eight");
-		shooterChooser.addObject("8ft Away","eight");
-		shooterChooser.addObject("15 ft away", "fifteen");
+		
+		//for combined auto
+		positionChooser.addDefault("BoilerDef", "Boiler");
+		positionChooser.addObject("Boiler", "Boiler");
+		positionChooser.addObject("Middle", "Middle");
+		positionChooser.addObject("Loading Station", "Loading");
+		
+		shooterChooser.addDefault("Close", RobotMap.slowSpeed);
+		shooterChooser.addObject("Close", RobotMap.slowSpeed);
+		shooterChooser.addObject("Far", RobotMap.fastSpeed);
 		
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", autoChooser);
-		SmartDashboard.putData("Choose Alliance", colorChooser);
+		SmartDashboard.putData("Choose Alliance", allianceChooser);
 		SmartDashboard.putData("Choose the Shooter Distance", shooterChooser);
 		
 		SwerveDrive.steeringMotorFrontRight.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
@@ -147,15 +146,15 @@ public class Robot extends IterativeRobot
         SwerveDrive.gyro.calibrate();
         
         Shooter.shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-        //shooter.reverseSensor(false);
+        Shooter.shooterMotor.reverseSensor(true);
         //shooter.configEncoderCodesPerRev(80); // if using FeedbackDevice.QuadEncoder
         //shooter.configPotentiometerTurns(XXX), // if using FeedbackDevice.AnalogEncoder or AnalogPot
 
         /* set the peak and nominal outputs, 12V means full */
         Shooter.shooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-        Shooter.shooterMotor.configPeakOutputVoltage(+0.0f, -12.0f);
+        Shooter.shooterMotor.configPeakOutputVoltage(12.0f, -12.0f);
         Shooter.shooterMotor.setF(1.557);
-        Shooter.shooterMotor.setP(4.092);
+        Shooter.shooterMotor.setP(4.096);
         Shooter.shooterMotor.setI(0); 
         Shooter.shooterMotor.setD(81.84);
 		    
@@ -192,29 +191,9 @@ public class Robot extends IterativeRobot
 	 */
 	@Override
 	public void autonomousInit() {
-		allianceColor= colorChooser.getSelected();
-		if(allianceColor=="Red")
-		{
-			allianceConstant=1;
-		}
-		if(allianceColor=="Blue")
-		{
-			allianceConstant=-1;
-		}
 		
-		shooterPosition = shooterChooser.getSelected();
-		if(shooterPosition == "eight")
-		{
-			shooterSpeed = -475;
-		}
-		if( shooterPosition == "fifteen")
-		{
-			shooterSpeed = -500;
-		}
 		
-		auto = true;
-		
-       autonomousCommand = (Command) autoChooser.getSelected();
+       autonomousCommand = new Autonomous();
        
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -225,7 +204,9 @@ public class Robot extends IterativeRobot
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
+		{
 			autonomousCommand.start();
+		}
 	}
 
 	/**
@@ -256,6 +237,10 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic() 
 	{
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Shooter speed", Shooter.shooterMotor.getEncVelocity());
+		
+		SmartDashboard.putNumber("Error", Shooter.shooterMotor.getClosedLoopError());
+		
 	}
 
 	/**

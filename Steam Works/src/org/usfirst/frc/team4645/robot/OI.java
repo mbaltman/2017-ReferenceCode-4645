@@ -17,13 +17,11 @@ public class OI
 	Button buttonShoot = new JoystickButton(leftJoy, 1);
 	
 	Button testShoot = new JoystickButton(leftJoy,3);
+	Button testFeeder = new JoystickButton(leftJoy, 11);
+	Button testGear = new JoystickButton(leftJoy, 10);
 	
 	Button buttonIntake = new JoystickButton(leftJoy, 4);
 	Button buttonClimb = new JoystickButton(leftJoy, 5);
-	
-	Button buttonLeftGear = new JoystickButton(leftJoy, 6);
-	Button buttonMiddleGear = new JoystickButton(leftJoy, 8);
-	Button buttonRightGear = new JoystickButton(leftJoy, 9);
 	
 	
 	
@@ -40,10 +38,17 @@ public class OI
 		//buttonRightGear.whenPressed(new PlaceGearCommand(-1,1));
 		
 		//buttonShoot.whenPressed(new CenterAndShootCommand());
-		//buttonIntake.whileHeld(new IntakeCommand());
-		//buttonClimb.whileHeld(new ClimbCommand());
+		buttonIntake.whileHeld(new IntakeCommand());
+		buttonIntake.whenReleased(new StopIntake());
+		
+		buttonClimb.whileHeld(new ClimbCommand());
+		buttonClimb.whenReleased(new ClimbStop());
 		
 		testShoot.whileHeld(new TestShoot());
+		testShoot.whenReleased(new TestStopShooter());
+		testGear.whenPressed(new TestGear());
+		
+		testFeeder.whileHeld(new TestFeeder());
 		
 	
 	}

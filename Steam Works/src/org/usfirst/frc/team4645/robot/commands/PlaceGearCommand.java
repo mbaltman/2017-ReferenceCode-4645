@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4645.robot.commands;
 
 import org.usfirst.frc.team4645.robot.Robot;
+import org.usfirst.frc.team4645.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class PlaceGearCommand extends CommandGroup 
 {
 
-    public PlaceGearCommand(int whichGear,int auto ) 
+    public PlaceGearCommand(double gearDegree, double backUpDistance) 
     {
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -29,38 +30,27 @@ public class PlaceGearCommand extends CommandGroup
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
+    	//
     	
+    	//faces the gear
+    	addSequential(new MakeParallel(gearDegree));
     	
-    	double degreeToGear=60 * whichGear * auto;//This depends on which gear spot is being target
-    	    	
-       	double idealYDistance=0;
-    	double idealXDistance=0;
-    	
-    	
-    	addSequential(new MakeParallel(degreeToGear));
-    	
-    	 double[] distanceInformation=(Robot.visionSubsystem.returnGearInformation());//updates vision values
-     	
-         addSequential(new MoveToX(idealXDistance-distanceInformation[0]));//moves in X
-        
-         distanceInformation=(Robot.visionSubsystem.returnGearInformation());//updates vision values
-         
-     	addSequential(new MoveToY(idealYDistance-distanceInformation[1]));//moves in Y
-     	
-     //At this point the Robot is Some known distance from the gear and centered on it 
-    	
+    	//updates vision values and moves in X, drops gear
+    	double[] distanceInformation=(Robot.visionSubsystem.returnGearInformation());
+    	addSequential(new MoveToX(0-distanceInformation[0]));
     	addSequential(new DropGearCommand());
-    	addSequential(new MoveToY(1));//how ever many meters to actually place gear
-    	
-    	addSequential(new PushGearCommand());
-    	addSequential( new MoveToY(-1));
-    	
+        
+    	//updates vision values and moves in Y, pushes gear
+    	distanceInformation=(Robot.visionSubsystem.returnGearInformation());
+     	addSequential(new MoveToY(RobotMap.GEAR_DISTANCE-distanceInformation[1]));
+     	addSequential(new PushGearCommand());
+     	
+     	//backs up and resets gear servos
+    	addSequential( new MoveToY(backUpDistance));
     	addSequential(new ResetGearCommand());
     	
     	
-    	//this series of steps will center on the gear, drive forwards, place the gear and then drive backwards
-    	//if the robot will need to wait some amount of time before driving backwards then a delay will
-    	//need to be added
+    	
     	
     }
 }

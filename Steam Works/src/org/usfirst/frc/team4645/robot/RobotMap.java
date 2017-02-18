@@ -38,10 +38,10 @@ public class RobotMap
 	
 	
 	//Steering errors
-	public static final double FRONTRIGHT_ERROR = 163;
-	public static final double FRONTLEFT_ERROR = 121;
-	public static final double BACKRIGHT_ERROR = -5;
-	public static final double BACKLEFT_ERROR = 208;
+	public static final double FRONTRIGHT_ERROR = 0;
+	public static final double FRONTLEFT_ERROR = 0;
+	public static final double BACKRIGHT_ERROR = 0;
+	public static final double BACKLEFT_ERROR = 0;
 	
 	//Radius angles (degrees) and value (meters)
 	public static final double FRONTRIGHT_RADANGLE = 32;
@@ -51,10 +51,24 @@ public class RobotMap
 	
 	public static final double RADIUS = 0.425;
 	
-	//Shooter speeds
-	public static final double closerSpeed = -475;
-	public static final double fartherSpeed = -600;
+	//Shooter speeds, TBD
+	public static final double slowSpeed = -475;
+	public static final double fastSpeed = -600;
+	
+	//Shooter distances, TBD
+	public static final double closeY = 2.3;
+	public static final double farY = 3;
+	
+	//gear distance, TBD
+	public static final double GEAR_DISTANCE = .20;
 	
 	
 	
 }
+
+
+
+
+
+
+

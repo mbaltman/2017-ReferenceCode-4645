@@ -26,7 +26,7 @@ public class Intake extends Subsystem
     }
     public void intakeIn()
     {
-    	intakeMotor.set(-.7);
+    	intakeMotor.set(-.85);
     	
     }
     public void intakeStop()

@@ -19,7 +19,7 @@ public class IntakeCommand extends Command
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	Robot.intakeSubsystem.intakeStop();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,6 +44,6 @@ public class IntakeCommand extends Command
     // subsystems is scheduled to run
     protected void interrupted() 
     {
-    	Robot.intakeSubsystem.intakeStop();
+    	
     }
 }

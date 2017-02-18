@@ -26,17 +26,17 @@ public class Reservoir extends Subsystem {
     
     public void spinOut()
     {
-    	servo1.set(.5);
+    	servo1.set(0);
     }
     
     public void alternate() 
     {
-    	if(servo1.get()<.51)
+    	if(servo1.get() < 0.05)
     	{
     		spinIn();
     	}
     		
-    	if(servo1.get()>.99)
+    	if(servo1.get() > 0.95)
     	{
     		spinOut();
     	}
